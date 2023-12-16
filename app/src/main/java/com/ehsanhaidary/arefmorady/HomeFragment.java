@@ -66,10 +66,7 @@ public class HomeFragment extends Fragment {
             playButton9, pauseButton9, favoriteButton9, shareButton9,
             playButton10, pauseButton10, favoriteButton10, shareButton10;
 
-    MediaPlayer mediaPlayer1 = new MediaPlayer();
-
-           /* , mediaPlayer2, mediaPlayer3, mediaPlayer4, mediaPlayer5,
-            mediaPlayer6, mediaPlayer7, mediaPlayer8, mediaPlayer9, mediaPlayer10;*/
+    MediaPlayer mediaPlayer1;
 
     Handler handler1 = new Handler();
     Handler handler2 = new Handler();
@@ -97,10 +94,9 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable final Bundle savedInstanceState) {
@@ -190,136 +186,17 @@ public class HomeFragment extends Fragment {
         shareButton9 = view.findViewById(R.id.share_button_9);
         shareButton10 = view.findViewById(R.id.share_button_10);
 
+        mediaPlayer1 = new MediaPlayer();
 
-        //initialize mediaPlayer
-       /*mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref);
-        mediaPlayer2 = MediaPlayer.create(getContext(), R.raw.aref_1);
-        mediaPlayer3 = MediaPlayer.create(getContext(), R.raw.aref_2);
-        mediaPlayer4 = MediaPlayer.create(getContext(), R.raw.aref_3);
-        mediaPlayer5 = MediaPlayer.create(getContext(), R.raw.aref_4);
-        mediaPlayer6 = MediaPlayer.create(getContext(), R.raw.aref_5);
-        mediaPlayer7 = MediaPlayer.create(getContext(), R.raw.aref_6);
-        mediaPlayer8 = MediaPlayer.create(getContext(), R.raw.aref_7);
-        mediaPlayer9 = MediaPlayer.create(getContext(), R.raw.aref_8);
-        mediaPlayer10 = MediaPlayer.create(getContext(), R.raw.aref_9);*/
-
-
-        //initialize runnable
-        /*runnable1 = new Runnable() {
+        mediaPlayer1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
-            public void run() {
-                //set progress on seekBar
-                seekBar1.setProgress(mediaPlayer1.getCurrentPosition());
-
-                // handler post delay for 0.5s
-                handler1.postDelayed(this, 500);
+            public void onCompletion(MediaPlayer mp) {
+                Toast.makeText(getContext(), "completed", Toast.LENGTH_SHORT).show();
             }
-        };*/
-
-        /*runnable2 = new Runnable() {
-            @Override
-            public void run() {
-                //set progress on seekBar
-                seekBar2.setProgress(mediaPlayer2.getCurrentPosition());
-
-                // handler post delay for 0.5s
-                handler2.postDelayed(this, 500);
-            }
-        };
-
-        runnable3 = new Runnable() {
-            @Override
-            public void run() {
-                //set progress on seekBar
-                seekBar3.setProgress(mediaPlayer3.getCurrentPosition());
-
-                // handler post delay for 0.5s
-                handler3.postDelayed(this, 500);
-            }
-        };
-
-        runnable4 = new Runnable() {
-            @Override
-            public void run() {
-                //set progress on seekBar
-                seekBar4.setProgress(mediaPlayer4.getCurrentPosition());
-
-                // handler post delay for 0.5s
-                handler4.postDelayed(this, 500);
-            }
-        };
-
-        runnable5 = new Runnable() {
-            @Override
-            public void run() {
-                //set progress on seekBar
-                seekBar5.setProgress(mediaPlayer5.getCurrentPosition());
-
-                // handler post delay for 0.5s
-                handler5.postDelayed(this, 500);
-            }
-        };
-
-        runnable6 = new Runnable() {
-            @Override
-            public void run() {
-                //set progress on seekBar
-                seekBar6.setProgress(mediaPlayer6.getCurrentPosition());
-
-                // handler post delay for 0.5s
-                handler6.postDelayed(this, 500);
-            }
-        };
-
-        runnable7 = new Runnable() {
-            @Override
-            public void run() {
-                //set progress on seekBar
-                seekBar7.setProgress(mediaPlayer7.getCurrentPosition());
-
-                // handler post delay for 0.5s
-                handler7.postDelayed(this, 500);
-            }
-        };
-
-
-        runnable8 = new Runnable() {
-            @Override
-            public void run() {
-                //set progress on seekBar
-                seekBar8.setProgress(mediaPlayer8.getCurrentPosition());
-
-                // handler post delay for 0.5s
-                handler8.postDelayed(this, 500);
-            }
-        };
-
-        runnable9 = new Runnable() {
-            @Override
-            public void run() {
-                //set progress on seekBar
-                seekBar9.setProgress(mediaPlayer9.getCurrentPosition());
-
-                // handler post delay for 0.5s
-                handler9.postDelayed(this, 500);
-            }
-        };
-
-        runnable10 = new Runnable() {
-            @Override
-            public void run() {
-                //set progress on seekBar
-                seekBar10.setProgress(mediaPlayer10.getCurrentPosition());
-
-                // handler post delay for 0.5s
-                handler10.postDelayed(this, 500);
-            }
-        };*/
-
+        });
 
         try {
             if (Global.getStat(getActivity(), "favorite_state1").equals(null)) {
-
             }
         }catch (Exception e){
             Global.saveState(getActivity(), "favorite_state1", "border");
@@ -334,17 +211,6 @@ public class HomeFragment extends Fragment {
             Global.saveState(getActivity(), "favorite_state10", "border");
 
         }
-
-
-       /* if (Global.getStat(getActivity(), "applicationMode").equals("light")){
-
-        }else if (Global.getStat(getActivity(), "applicationMode").equals("dark")){
-            RelativeLayout mainLayout = view.findViewById(R.id.mainLayout);
-            mainLayout.setBackgroundColor(getResources().getColor(R.color.mainDark));
-            RelativeLayout firstLayout = view.findViewById(R.id.first_relativeLayout);
-            firstLayout.setBackgroundResource(R.drawable.bg_dark);
-            seekBar1.setBackgroundColor(getResources().getColor(R.color.whit));
-        }*/
 
 
         try {
@@ -459,15 +325,7 @@ public class HomeFragment extends Fragment {
 
 
 
-                /*
-                mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref);
-                mediaPlayer1.seekTo(savedInstanceState.getInt("saveInt1"));
-                setRunnable();
-                mediaPlayer1.start();
-                playButton1.setVisibility(View.GONE);
-                pauseButton1.setVisibility(View.VISIBLE);
-                seekBar1.setMax(mediaPlayer1.getDuration());
-                handler1.postDelayed(runnable1, 0);*/
+
             } else if(savedInstanceState.getString("saveString1").equals("notPlaying")){
                 if (savedInstanceState.getInt("saveInt1") > 0){
 
@@ -543,32 +401,12 @@ public class HomeFragment extends Fragment {
                             handler10.postDelayed(runnable10, 0);
                             break;
                     }
-
-
-
-
-
-                    /*mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref);
-                    mediaPlayer1.seekTo(savedInstanceState.getInt("saveInt1"));
-                    setRunnable();
-                    mediaPlayer1.start();
-                    playButton1.setVisibility(View.GONE);
-                    pauseButton1.setVisibility(View.VISIBLE);
-                    seekBar1.setMax(mediaPlayer1.getDuration());
-                    handler1.postDelayed(runnable1, 0);*/
                 }
-
-                /*mediaPlayer1.seekTo(savedInstanceState.getInt("saveInt1"));
-                //seekBar1.setProgress(10000);
-                mediaPlayer1.start();
-                seekBar1.setMax(mediaPlayer1.getDuration());
-                handler1.postDelayed(runnable1, 0);*/
             }
         } catch (Exception e) {
-
         }
 
-       
+
 
 
         //get duration of player
@@ -632,22 +470,14 @@ public class HomeFragment extends Fragment {
 
 
 
+mediaPlayer1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+    @Override
+    public void onCompletion(MediaPlayer mp) {
+        Toast.makeText(getContext(), "com", Toast.LENGTH_SHORT).show();
+    }
+});
 
 
-
-        /*if (savedInstanceState != null){*//*
-            String bool = String.valueOf(mediaPlayer1.isPlaying());
-            int position = savedInstanceState.getInt("firstposition");
-            Toast.makeText(getContext(), bool, Toast.LENGTH_SHORT).show();
-            mediaPlayer1.seekTo(position);*//*
-            int position = savedInstanceState.getInt("firstposition");
-            playButton1.setVisibility(View.GONE);
-            pauseButton1.setVisibility(View.VISIBLE);
-            mediaPlayer1.seekTo(position);
-            mediaPlayer1.start();
-            seekBar1.setMax(mediaPlayer1.getDuration());
-            handler1.postDelayed(runnable1, 0);
-        }*/
 
 
         //all play buttons
@@ -666,7 +496,7 @@ public class HomeFragment extends Fragment {
                 pauseButton1.setVisibility(View.VISIBLE);
                 mediaPlayer1.start();
                 seekBar1.setMax(mediaPlayer1.getDuration());
-                handler1.postDelayed(runnable1, 0);
+                handler1.postDelayed(runnable1, 500);
             }
         });
 
@@ -1634,97 +1464,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-       /* mediaPlayer1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                Toast.makeText(getContext(), "comp", Toast.LENGTH_SHORT).show();
-            }
-        });*/
-
-        /*mediaPlayer1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {*//*
-                pauseButton1.setVisibility(View.GONE);
-                playButton1.setVisibility(View.VISIBLE);
-                mediaPlayer1.seekTo(0);*//*
-                Toast.makeText(getContext(), "finished", Toast.LENGTH_SHORT).show();
-                ifAudioIsPlaying();
-                setMax();
-            }
-        });*/
-        /*mediaPlayer2.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                pauseButton2.setVisibility(View.GONE);
-                playButton2.setVisibility(View.VISIBLE);
-                mediaPlayer2.seekTo(0);
-            }
-        });
-        mediaPlayer3.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                pauseButton3.setVisibility(View.GONE);
-                playButton3.setVisibility(View.VISIBLE);
-                mediaPlayer3.seekTo(0);
-            }
-        });
-        mediaPlayer4.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                pauseButton4.setVisibility(View.GONE);
-                playButton4.setVisibility(View.VISIBLE);
-                mediaPlayer4.seekTo(0);
-            }
-        });
-        mediaPlayer5.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                pauseButton5.setVisibility(View.GONE);
-                playButton5.setVisibility(View.VISIBLE);
-                mediaPlayer5.seekTo(0);
-            }
-        });
-        mediaPlayer6.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                pauseButton6.setVisibility(View.GONE);
-                playButton6.setVisibility(View.VISIBLE);
-                mediaPlayer6.seekTo(0);
-            }
-        });
-        mediaPlayer7.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                pauseButton7.setVisibility(View.GONE);
-                playButton7.setVisibility(View.VISIBLE);
-                mediaPlayer7.seekTo(0);
-            }
-        });
-        mediaPlayer8.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                pauseButton8.setVisibility(View.GONE);
-                playButton8.setVisibility(View.VISIBLE);
-                mediaPlayer8.seekTo(0);
-            }
-        });
-        mediaPlayer9.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                pauseButton9.setVisibility(View.GONE);
-                playButton9.setVisibility(View.VISIBLE);
-                mediaPlayer9.seekTo(0);
-            }
-        });
-        mediaPlayer10.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                pauseButton10.setVisibility(View.GONE);
-                playButton10.setVisibility(View.VISIBLE);
-                mediaPlayer10.seekTo(0);
-            }
-        });*/
-
 
     }
 
@@ -1741,8 +1480,7 @@ public class HomeFragment extends Fragment {
     private void ifAudioIsPlaying() {
         try {
             if (mediaPlayer1.isPlaying()) {
-                mediaPlayer1.pause();
-                mediaPlayer1.seekTo(0);
+                mediaPlayer1.stop();
                 switch (MEDIA_PLAYER) {
                     case 1:
                         pauseButton1.setVisibility(View.GONE);
@@ -1790,52 +1528,7 @@ public class HomeFragment extends Fragment {
         } catch (Exception e) {
 
         }
-         /*else if (mediaPlayer2.isPlaying()) {
-            playButton2.setVisibility(View.VISIBLE);
-            pauseButton2.setVisibility(View.GONE);
-            mediaPlayer2.pause();
-            mediaPlayer2.seekTo(0);
-        } else if (mediaPlayer3.isPlaying()) {
-            playButton3.setVisibility(View.VISIBLE);
-            pauseButton3.setVisibility(View.GONE);
-            mediaPlayer3.pause();
-            mediaPlayer3.seekTo(0);
-        } else if (mediaPlayer4.isPlaying()) {
-            playButton4.setVisibility(View.VISIBLE);
-            pauseButton4.setVisibility(View.GONE);
-            mediaPlayer4.pause();
-            mediaPlayer4.seekTo(0);
-        } else if (mediaPlayer5.isPlaying()) {
-            playButton5.setVisibility(View.VISIBLE);
-            pauseButton5.setVisibility(View.GONE);
-            mediaPlayer5.pause();
-            mediaPlayer5.seekTo(0);
-        } else if (mediaPlayer6.isPlaying()) {
-            playButton6.setVisibility(View.VISIBLE);
-            pauseButton6.setVisibility(View.GONE);
-            mediaPlayer6.pause();
-            mediaPlayer6.seekTo(0);
-        } else if (mediaPlayer7.isPlaying()) {
-            playButton7.setVisibility(View.VISIBLE);
-            pauseButton7.setVisibility(View.GONE);
-            mediaPlayer7.pause();
-            mediaPlayer7.seekTo(0);
-        } else if (mediaPlayer8.isPlaying()) {
-            playButton8.setVisibility(View.VISIBLE);
-            pauseButton8.setVisibility(View.GONE);
-            mediaPlayer8.pause();
-            mediaPlayer8.seekTo(0);
-        } else if (mediaPlayer9.isPlaying()) {
-            playButton9.setVisibility(View.VISIBLE);
-            pauseButton9.setVisibility(View.GONE);
-            mediaPlayer9.pause();
-            mediaPlayer9.seekTo(0);
-        } else if (mediaPlayer10.isPlaying()) {
-            playButton10.setVisibility(View.VISIBLE);
-            pauseButton10.setVisibility(View.GONE);
-            mediaPlayer10.pause();
-            mediaPlayer10.seekTo(0);
-        }*/
+
     }
 
     @Override
@@ -1997,15 +1690,7 @@ public class HomeFragment extends Fragment {
 
     }
 
-    /*private void playAudio(int audiosCouner){
-        ifAudioIsPlaying();
-        playButton4.setVisibility(View.GONE);
-        pauseButton4.setVisibility(View.VISIBLE);
-        mediaPlayer4.start();
-        seekBar4.setMax(mediaPlayer4.getDuration());
-        handler4.postDelayed(runnable4, 0);
 
-    }*/
 
 
     private void setPlayerDuration() {
