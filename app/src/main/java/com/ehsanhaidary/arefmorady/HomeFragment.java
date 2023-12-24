@@ -188,12 +188,6 @@ public class HomeFragment extends Fragment {
 
         mediaPlayer1 = new MediaPlayer();
 
-        mediaPlayer1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                Toast.makeText(getContext(), "completed", Toast.LENGTH_SHORT).show();
-            }
-        });
 
         try {
             if (Global.getStat(getActivity(), "favorite_state1").equals(null)) {

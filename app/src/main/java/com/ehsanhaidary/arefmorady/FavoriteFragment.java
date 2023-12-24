@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -35,8 +36,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.concurrent.TimeUnit;
 
-public class FavoriteFragment extends Fragment {
+public class FavoriteFragment extends Fragment implements ServiceConnection, ActionPlaying {
 
+    AudioService audioService;
 
     static final int REQUEST_CODE = 123;
     int MEDIA_PLAYER = 0;
@@ -61,7 +63,6 @@ public class FavoriteFragment extends Fragment {
             playButton9, pauseButton9, favoriteButton9, shareButton9,
             playButton10, pauseButton10, favoriteButton10, shareButton10;
 
-    MediaPlayer mediaPlayer1 = new MediaPlayer();
 
     Handler handler1 = new Handler();
     Handler handler2 = new Handler();
@@ -279,16 +280,16 @@ public class FavoriteFragment extends Fragment {
 
 
         //get duration of player
-        playerDuration1.setText("06:31");
-        playerDuration2.setText("07:11");
-        playerDuration3.setText("01:50");
-        playerDuration4.setText("05:08");
-        playerDuration5.setText("03:36");
-        playerDuration6.setText("05:34");
-        playerDuration7.setText("06:46");
-        playerDuration8.setText("10:13");
-        playerDuration9.setText("02:35");
-        playerDuration10.setText("03:20");
+        playerDuration1.setText("18:37");
+        playerDuration2.setText("14:45");
+        playerDuration3.setText("06:09");
+        playerDuration4.setText("13:12");
+        playerDuration5.setText("12:43");
+        playerDuration6.setText("13:07");
+        playerDuration7.setText("16:15");
+        playerDuration8.setText("15:23");
+        playerDuration9.setText("14:42");
+        playerDuration10.setText("14:10");
 
 
         //all play buttons
@@ -296,17 +297,19 @@ public class FavoriteFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ifAudioIsPlaying();
-                setMax();
                 if (MEDIA_PLAYER != 1) {
-                    mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref);
+                    setMax();
+//                    mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref);
                     MEDIA_PLAYER = 1;
                     setRunnable();
+                    audioService.createMediaPlayer(MEDIA_PLAYER);
                 }
+                startService();
                 //setPlayerDuration();
                 playButton1.setVisibility(View.GONE);
                 pauseButton1.setVisibility(View.VISIBLE);
-                mediaPlayer1.start();
-                seekBar1.setMax(mediaPlayer1.getDuration());
+                audioService.mediaPlayer.start();
+                seekBar1.setMax(audioService.mediaPlayer.getDuration());
                 handler1.postDelayed(runnable1, 0);
             }
         });
@@ -315,16 +318,17 @@ public class FavoriteFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ifAudioIsPlaying();
-                setMax();
                 if (MEDIA_PLAYER != 2) {
-                    mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref_1);
+                    setMax();
                     MEDIA_PLAYER = 2;
                     setRunnable();
+                    audioService.createMediaPlayer(MEDIA_PLAYER);
                 }
+                startService();
                 playButton2.setVisibility(View.GONE);
                 pauseButton2.setVisibility(View.VISIBLE);
-                mediaPlayer1.start();
-                seekBar2.setMax(mediaPlayer1.getDuration());
+                audioService.mediaPlayer.start();
+                seekBar2.setMax(audioService.mediaPlayer.getDuration());
                 handler2.postDelayed(runnable2, 0);
             }
         });
@@ -333,16 +337,17 @@ public class FavoriteFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ifAudioIsPlaying();
-                setMax();
                 if (MEDIA_PLAYER != 3) {
-                    mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref_2);
+                    setMax();
                     MEDIA_PLAYER = 3;
                     setRunnable();
+                    audioService.createMediaPlayer(MEDIA_PLAYER);
                 }
+                startService();
                 playButton3.setVisibility(View.GONE);
                 pauseButton3.setVisibility(View.VISIBLE);
-                mediaPlayer1.start();
-                seekBar3.setMax(mediaPlayer1.getDuration());
+                audioService.mediaPlayer.start();
+                seekBar3.setMax(audioService.mediaPlayer.getDuration());
                 handler3.postDelayed(runnable3, 0);
             }
         });
@@ -352,16 +357,17 @@ public class FavoriteFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ifAudioIsPlaying();
-                setMax();
                 if (MEDIA_PLAYER != 4) {
-                    mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref_3);
+                    setMax();
                     MEDIA_PLAYER = 4;
                     setRunnable();
+                    audioService.createMediaPlayer(MEDIA_PLAYER);
                 }
+                startService();
                 playButton4.setVisibility(View.GONE);
                 pauseButton4.setVisibility(View.VISIBLE);
-                mediaPlayer1.start();
-                seekBar4.setMax(mediaPlayer1.getDuration());
+                audioService.mediaPlayer.start();
+                seekBar4.setMax(audioService.mediaPlayer.getDuration());
                 handler4.postDelayed(runnable4, 0);
             }
         });
@@ -370,16 +376,17 @@ public class FavoriteFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ifAudioIsPlaying();
-                setMax();
                 if (MEDIA_PLAYER != 5) {
-                    mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref_4);
+                    setMax();
                     MEDIA_PLAYER = 5;
                     setRunnable();
+                    audioService.createMediaPlayer(MEDIA_PLAYER);
                 }
+                startService();
                 playButton5.setVisibility(View.GONE);
                 pauseButton5.setVisibility(View.VISIBLE);
-                mediaPlayer1.start();
-                seekBar5.setMax(mediaPlayer1.getDuration());
+                audioService.mediaPlayer.start();
+                seekBar5.setMax(audioService.mediaPlayer.getDuration());
                 handler5.postDelayed(runnable5, 0);
             }
         });
@@ -388,16 +395,17 @@ public class FavoriteFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ifAudioIsPlaying();
-                setMax();
                 if (MEDIA_PLAYER != 6) {
-                    mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref_5);
+                    setMax();
                     MEDIA_PLAYER = 6;
                     setRunnable();
+                    audioService.createMediaPlayer(MEDIA_PLAYER);
                 }
+                startService();
                 playButton6.setVisibility(View.GONE);
                 pauseButton6.setVisibility(View.VISIBLE);
-                mediaPlayer1.start();
-                seekBar6.setMax(mediaPlayer1.getDuration());
+                audioService.mediaPlayer.start();
+                seekBar6.setMax(audioService.mediaPlayer.getDuration());
                 handler6.postDelayed(runnable6, 0);
             }
         });
@@ -406,16 +414,17 @@ public class FavoriteFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ifAudioIsPlaying();
-                setMax();
                 if (MEDIA_PLAYER != 7) {
-                    mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref_6);
+                    setMax();
                     MEDIA_PLAYER = 7;
                     setRunnable();
+                    audioService.createMediaPlayer(MEDIA_PLAYER);
                 }
+                startService();
                 playButton7.setVisibility(View.GONE);
                 pauseButton7.setVisibility(View.VISIBLE);
-                mediaPlayer1.start();
-                seekBar7.setMax(mediaPlayer1.getDuration());
+                audioService.mediaPlayer.start();
+                seekBar7.setMax(audioService.mediaPlayer.getDuration());
                 handler7.postDelayed(runnable7, 0);
             }
         });
@@ -424,16 +433,17 @@ public class FavoriteFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ifAudioIsPlaying();
-                setMax();
                 if (MEDIA_PLAYER != 8) {
-                    mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref_7);
+                    setMax();
                     MEDIA_PLAYER = 8;
                     setRunnable();
+                    audioService.createMediaPlayer(MEDIA_PLAYER);
                 }
+                startService();
                 playButton8.setVisibility(View.GONE);
                 pauseButton8.setVisibility(View.VISIBLE);
-                mediaPlayer1.start();
-                seekBar8.setMax(mediaPlayer1.getDuration());
+                audioService.mediaPlayer.start();
+                seekBar8.setMax(audioService.mediaPlayer.getDuration());
                 handler8.postDelayed(runnable8, 0);
             }
         });
@@ -442,16 +452,18 @@ public class FavoriteFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ifAudioIsPlaying();
-                setMax();
+
                 if (MEDIA_PLAYER != 9) {
-                    mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref_8);
+                    setMax();
                     MEDIA_PLAYER = 9;
                     setRunnable();
+                    audioService.createMediaPlayer(MEDIA_PLAYER);
                 }
+                startService();
                 playButton9.setVisibility(View.GONE);
                 pauseButton9.setVisibility(View.VISIBLE);
-                mediaPlayer1.start();
-                seekBar9.setMax(mediaPlayer1.getDuration());
+                audioService.mediaPlayer.start();
+                seekBar9.setMax(audioService.mediaPlayer.getDuration());
                 handler9.postDelayed(runnable9, 0);
             }
         });
@@ -460,17 +472,17 @@ public class FavoriteFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 ifAudioIsPlaying();
-                setMax();
                 if (MEDIA_PLAYER != 10) {
-                    mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref_9);
+                    setMax();
                     MEDIA_PLAYER = 10;
                     setRunnable();
-
+                    audioService.createMediaPlayer(MEDIA_PLAYER);
                 }
+                startService();
                 playButton10.setVisibility(View.GONE);
                 pauseButton10.setVisibility(View.VISIBLE);
-                mediaPlayer1.start();
-                seekBar10.setMax(mediaPlayer1.getDuration());
+                audioService.mediaPlayer.start();
+                seekBar10.setMax(audioService.mediaPlayer.getDuration());
                 handler10.postDelayed(runnable10, 0);
             }
         });
@@ -482,7 +494,7 @@ public class FavoriteFragment extends Fragment {
             public void onClick(View v) {
                 pauseButton1.setVisibility(View.GONE);
                 playButton1.setVisibility(View.VISIBLE);
-                mediaPlayer1.pause();
+                audioService.mediaPlayer.pause();
                 handler1.removeCallbacks(runnable1);
             }
         });
@@ -491,7 +503,7 @@ public class FavoriteFragment extends Fragment {
             public void onClick(View v) {
                 pauseButton2.setVisibility(View.GONE);
                 playButton2.setVisibility(View.VISIBLE);
-                mediaPlayer1.pause();
+                audioService.mediaPlayer.pause();
                 handler2.removeCallbacks(runnable2);
             }
         });
@@ -500,7 +512,7 @@ public class FavoriteFragment extends Fragment {
             public void onClick(View v) {
                 pauseButton3.setVisibility(View.GONE);
                 playButton3.setVisibility(View.VISIBLE);
-                mediaPlayer1.pause();
+                audioService.mediaPlayer.pause();
                 handler3.removeCallbacks(runnable3);
             }
         });
@@ -509,7 +521,7 @@ public class FavoriteFragment extends Fragment {
             public void onClick(View v) {
                 pauseButton4.setVisibility(View.GONE);
                 playButton4.setVisibility(View.VISIBLE);
-                mediaPlayer1.pause();
+                audioService.mediaPlayer.pause();
                 handler4.removeCallbacks(runnable4);
             }
         });
@@ -518,7 +530,7 @@ public class FavoriteFragment extends Fragment {
             public void onClick(View v) {
                 pauseButton5.setVisibility(View.GONE);
                 playButton5.setVisibility(View.VISIBLE);
-                mediaPlayer1.pause();
+                audioService.mediaPlayer.pause();
                 handler5.removeCallbacks(runnable5);
             }
         });
@@ -527,7 +539,7 @@ public class FavoriteFragment extends Fragment {
             public void onClick(View v) {
                 pauseButton6.setVisibility(View.GONE);
                 playButton6.setVisibility(View.VISIBLE);
-                mediaPlayer1.pause();
+                audioService.mediaPlayer.pause();
                 handler6.removeCallbacks(runnable6);
             }
         });
@@ -536,7 +548,7 @@ public class FavoriteFragment extends Fragment {
             public void onClick(View v) {
                 pauseButton7.setVisibility(View.GONE);
                 playButton7.setVisibility(View.VISIBLE);
-                mediaPlayer1.pause();
+                audioService.mediaPlayer.pause();
                 handler7.removeCallbacks(runnable7);
             }
         });
@@ -545,7 +557,7 @@ public class FavoriteFragment extends Fragment {
             public void onClick(View v) {
                 pauseButton8.setVisibility(View.GONE);
                 playButton8.setVisibility(View.VISIBLE);
-                mediaPlayer1.pause();
+                audioService.mediaPlayer.pause();
                 handler8.removeCallbacks(runnable8);
             }
         });
@@ -554,7 +566,7 @@ public class FavoriteFragment extends Fragment {
             public void onClick(View v) {
                 pauseButton9.setVisibility(View.GONE);
                 playButton9.setVisibility(View.VISIBLE);
-                mediaPlayer1.pause();
+                audioService.mediaPlayer.pause();
                 handler9.removeCallbacks(runnable9);
             }
         });
@@ -563,7 +575,7 @@ public class FavoriteFragment extends Fragment {
             public void onClick(View v) {
                 pauseButton10.setVisibility(View.GONE);
                 playButton10.setVisibility(View.VISIBLE);
-                mediaPlayer1.pause();
+                audioService.mediaPlayer.pause();
                 handler10.removeCallbacks(runnable10);
             }
         });
@@ -712,12 +724,6 @@ public class FavoriteFragment extends Fragment {
                 String state = null;
                 try {
                     state = Global.getStat(getActivity(), "favorite_state1");
-                    if (state == null) {
-                        favoriteButton1.setImageResource(R.drawable.ic_baseline_favorite_24);
-                        Global.saveState(getActivity(), "favorite_state1", "fill");
-                        return;
-                    }
-
                 } catch (Exception ignored) {
 
                 }
@@ -745,12 +751,6 @@ public class FavoriteFragment extends Fragment {
                 String state = null;
                 try {
                     state = Global.getStat(getActivity(), "favorite_state2");
-                    if (state == null) {
-                        favoriteButton2.setImageResource(R.drawable.ic_baseline_favorite_24);
-                        Global.saveState(getActivity(), "favorite_state2", "fill");
-                        return;
-                    }
-
                 } catch (Exception ignored) {
 
                 }
@@ -777,12 +777,6 @@ public class FavoriteFragment extends Fragment {
                 String state = null;
                 try {
                     state = Global.getStat(getActivity(), "favorite_state3");
-                    if (state == null) {
-                        favoriteButton3.setImageResource(R.drawable.ic_baseline_favorite_24);
-                        Global.saveState(getActivity(), "favorite_state3", "fill");
-                        return;
-                    }
-
                 } catch (Exception ignored) {
 
                 }
@@ -809,12 +803,6 @@ public class FavoriteFragment extends Fragment {
                 String state = null;
                 try {
                     state = Global.getStat(getActivity(), "favorite_state4");
-                    if (state == null) {
-                        favoriteButton4.setImageResource(R.drawable.ic_baseline_favorite_24);
-                        Global.saveState(getActivity(), "favorite_state4", "fill");
-                        return;
-                    }
-
                 } catch (Exception ignored) {
 
                 }
@@ -841,12 +829,6 @@ public class FavoriteFragment extends Fragment {
                 String state = null;
                 try {
                     state = Global.getStat(getActivity(), "favorite_state5");
-                    if (state == null) {
-                        favoriteButton5.setImageResource(R.drawable.ic_baseline_favorite_24);
-                        Global.saveState(getActivity(), "favorite_state5", "fill");
-                        return;
-                    }
-
                 } catch (Exception ignored) {
 
                 }
@@ -873,12 +855,6 @@ public class FavoriteFragment extends Fragment {
                 String state = null;
                 try {
                     state = Global.getStat(getActivity(), "favorite_state6");
-                    if (state == null) {
-                        favoriteButton6.setImageResource(R.drawable.ic_baseline_favorite_24);
-                        Global.saveState(getActivity(), "favorite_state6", "fill");
-                        return;
-                    }
-
                 } catch (Exception ignored) {
 
                 }
@@ -905,12 +881,6 @@ public class FavoriteFragment extends Fragment {
                 String state = null;
                 try {
                     state = Global.getStat(getActivity(), "favorite_state7");
-                    if (state == null) {
-                        favoriteButton7.setImageResource(R.drawable.ic_baseline_favorite_24);
-                        Global.saveState(getActivity(), "favorite_state7", "fill");
-                        return;
-                    }
-
                 } catch (Exception ignored) {
 
                 }
@@ -937,12 +907,6 @@ public class FavoriteFragment extends Fragment {
                 String state = null;
                 try {
                     state = Global.getStat(getActivity(), "favorite_state8");
-                    if (state == null) {
-                        favoriteButton8.setImageResource(R.drawable.ic_baseline_favorite_24);
-                        Global.saveState(getActivity(), "favorite_state8", "fill");
-                        return;
-                    }
-
                 } catch (Exception ignored) {
 
                 }
@@ -969,12 +933,6 @@ public class FavoriteFragment extends Fragment {
                 String state = null;
                 try {
                     state = Global.getStat(getActivity(), "favorite_state9");
-                    if (state == null) {
-                        favoriteButton9.setImageResource(R.drawable.ic_baseline_favorite_24);
-                        Global.saveState(getActivity(), "favorite_state9", "fill");
-                        return;
-                    }
-
                 } catch (Exception ignored) {
 
                 }
@@ -1001,12 +959,6 @@ public class FavoriteFragment extends Fragment {
                 String state = null;
                 try {
                     state = Global.getStat(getActivity(), "favorite_state10");
-                    if (state == null) {
-                        favoriteButton10.setImageResource(R.drawable.ic_baseline_favorite_24);
-                        Global.saveState(getActivity(), "favorite_state10", "fill");
-                        return;
-                    }
-
                 } catch (Exception ignored) {
 
                 }
