@@ -45,7 +45,7 @@ public class HomeFragment extends Fragment {
 
     static final int REQUEST_CODE = 123;
     int MEDIA_PLAYER = 0;
-
+    AudioService audioService;
 
     //initializing variables
     TextView playerPosition1, playerDuration1, playerPosition2, playerDuration2,
@@ -66,7 +66,6 @@ public class HomeFragment extends Fragment {
             playButton9, pauseButton9, favoriteButton9, shareButton9,
             playButton10, pauseButton10, favoriteButton10, shareButton10;
 
-    MediaPlayer mediaPlayer1;
 
     Handler handler1 = new Handler();
     Handler handler2 = new Handler();
@@ -186,13 +185,12 @@ public class HomeFragment extends Fragment {
         shareButton9 = view.findViewById(R.id.share_button_9);
         shareButton10 = view.findViewById(R.id.share_button_10);
 
-        mediaPlayer1 = new MediaPlayer();
 
 
         try {
             if (Global.getStat(getActivity(), "favorite_state1").equals(null)) {
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             Global.saveState(getActivity(), "favorite_state1", "border");
             Global.saveState(getActivity(), "favorite_state2", "border");
             Global.saveState(getActivity(), "favorite_state3", "border");
@@ -213,7 +211,7 @@ public class HomeFragment extends Fragment {
 
             } else if (savedInstanceState.getString("saveString1").equals("playing")) {
 
-                switch (MEDIA_PLAYER){
+                switch (MEDIA_PLAYER) {
                     case 1:
                         mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref);
                         mediaPlayer1.seekTo(savedInstanceState.getInt("saveInt1"));
@@ -317,13 +315,10 @@ public class HomeFragment extends Fragment {
                 }
 
 
+            } else if (savedInstanceState.getString("saveString1").equals("notPlaying")) {
+                if (savedInstanceState.getInt("saveInt1") > 0) {
 
-
-
-            } else if(savedInstanceState.getString("saveString1").equals("notPlaying")){
-                if (savedInstanceState.getInt("saveInt1") > 0){
-
-                    switch (MEDIA_PLAYER){
+                    switch (MEDIA_PLAYER) {
                         case 1:
                             mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref);
                             mediaPlayer1.seekTo(savedInstanceState.getInt("saveInt1"));
@@ -401,8 +396,6 @@ public class HomeFragment extends Fragment {
         }
 
 
-
-
         //get duration of player
         playerDuration1.setText("06:31");
         playerDuration2.setText("07:11");
@@ -458,20 +451,12 @@ public class HomeFragment extends Fragment {
         playerDuration10.setText(sDuration10);*/
 
 
-
-
-
-
-
-
-mediaPlayer1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-    @Override
-    public void onCompletion(MediaPlayer mp) {
-        Toast.makeText(getContext(), "com", Toast.LENGTH_SHORT).show();
-    }
-});
-
-
+        mediaPlayer1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                Toast.makeText(getContext(), "com", Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
         //all play buttons
@@ -759,7 +744,7 @@ mediaPlayer1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 grantPermissions();
                 if (ContextCompat.checkSelfPermission(getContext(),
                         Manifest.permission.READ_EXTERNAL_STORAGE) ==
-                        PackageManager.PERMISSION_GRANTED){
+                        PackageManager.PERMISSION_GRANTED) {
                     copyFileToExternalStorage(R.raw.aref, "aref.mp3");
                     shareAudios("aref", 1);
                 }
@@ -775,7 +760,7 @@ mediaPlayer1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 grantPermissions();
                 if (ContextCompat.checkSelfPermission(getContext(),
                         Manifest.permission.READ_EXTERNAL_STORAGE) ==
-                        PackageManager.PERMISSION_GRANTED){
+                        PackageManager.PERMISSION_GRANTED) {
                     copyFileToExternalStorage(R.raw.aref_1, "aref_1.mp3");
                     shareAudios("aref_1", 2);
                 }
@@ -789,7 +774,7 @@ mediaPlayer1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 grantPermissions();
                 if (ContextCompat.checkSelfPermission(getContext(),
                         Manifest.permission.READ_EXTERNAL_STORAGE) ==
-                        PackageManager.PERMISSION_GRANTED){
+                        PackageManager.PERMISSION_GRANTED) {
                     copyFileToExternalStorage(R.raw.aref_2, "aref_2.mp3");
                     shareAudios("aref_2", 3);
                 }
@@ -801,7 +786,7 @@ mediaPlayer1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 grantPermissions();
                 if (ContextCompat.checkSelfPermission(getContext(),
                         Manifest.permission.READ_EXTERNAL_STORAGE) ==
-                        PackageManager.PERMISSION_GRANTED){
+                        PackageManager.PERMISSION_GRANTED) {
                     copyFileToExternalStorage(R.raw.aref_3, "aref_3.mp3");
                     shareAudios("aref_3", 4);
                 }
@@ -813,7 +798,7 @@ mediaPlayer1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 grantPermissions();
                 if (ContextCompat.checkSelfPermission(getContext(),
                         Manifest.permission.READ_EXTERNAL_STORAGE) ==
-                        PackageManager.PERMISSION_GRANTED){
+                        PackageManager.PERMISSION_GRANTED) {
                     copyFileToExternalStorage(R.raw.aref_4, "aref_4.mp3");
                     shareAudios("aref_4", 5);
                 }
@@ -826,7 +811,7 @@ mediaPlayer1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 grantPermissions();
                 if (ContextCompat.checkSelfPermission(getContext(),
                         Manifest.permission.READ_EXTERNAL_STORAGE) ==
-                        PackageManager.PERMISSION_GRANTED){
+                        PackageManager.PERMISSION_GRANTED) {
                     copyFileToExternalStorage(R.raw.aref_5, "aref_5.mp3");
                     shareAudios("aref_5", 6);
                 }
@@ -839,7 +824,7 @@ mediaPlayer1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 grantPermissions();
                 if (ContextCompat.checkSelfPermission(getContext(),
                         Manifest.permission.READ_EXTERNAL_STORAGE) ==
-                        PackageManager.PERMISSION_GRANTED){
+                        PackageManager.PERMISSION_GRANTED) {
                     copyFileToExternalStorage(R.raw.aref_6, "aref_6.mp3");
                     shareAudios("aref_6", 7);
                 }
@@ -852,7 +837,7 @@ mediaPlayer1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 grantPermissions();
                 if (ContextCompat.checkSelfPermission(getContext(),
                         Manifest.permission.READ_EXTERNAL_STORAGE) ==
-                        PackageManager.PERMISSION_GRANTED){
+                        PackageManager.PERMISSION_GRANTED) {
                     copyFileToExternalStorage(R.raw.aref_7, "aref_7.mp3");
                     shareAudios("aref_7", 8);
                 }
@@ -865,7 +850,7 @@ mediaPlayer1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 grantPermissions();
                 if (ContextCompat.checkSelfPermission(getContext(),
                         Manifest.permission.READ_EXTERNAL_STORAGE) ==
-                        PackageManager.PERMISSION_GRANTED){
+                        PackageManager.PERMISSION_GRANTED) {
                     copyFileToExternalStorage(R.raw.aref_8, "aref_8.mp3");
                     shareAudios("aref_8", 9);
                 }
@@ -878,7 +863,7 @@ mediaPlayer1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 grantPermissions();
                 if (ContextCompat.checkSelfPermission(getContext(),
                         Manifest.permission.READ_EXTERNAL_STORAGE) ==
-                        PackageManager.PERMISSION_GRANTED){
+                        PackageManager.PERMISSION_GRANTED) {
                     copyFileToExternalStorage(R.raw.aref_9, "aref_9.mp3");
                     shareAudios("aref_9", 10);
                 }
@@ -1535,8 +1520,8 @@ mediaPlayer1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             outState.putString("saveString1", "playing");
         } else if (!mediaPlayer1.isPlaying()) {
             outState.putString("saveString1", "notPlaying");
-            if (MEDIA_PLAYER > 0){
-                if (mediaPlayer1.getCurrentPosition() > 0){
+            if (MEDIA_PLAYER > 0) {
+                if (mediaPlayer1.getCurrentPosition() > 0) {
                     outState.putInt("saveInt1", mediaPlayer1.getCurrentPosition());
                 }
             }
@@ -1561,7 +1546,7 @@ mediaPlayer1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 putExtra(Intent.EXTRA_STREAM, data).
                 setType("audio/*").
                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        switch (whichAudio){
+        switch (whichAudio) {
             case 1:
                 intent.putExtra(Intent.EXTRA_TEXT, "1");
                 break;
@@ -1642,7 +1627,7 @@ mediaPlayer1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
     private String copyFileToExternalStorage(int resorceId, String resourceName) {
         File filePath = Environment.getExternalStorageDirectory();
         File dir = new File(filePath.getAbsolutePath() + "/IslamicAudio/");
-        if (!(dir.exists())){
+        if (!(dir.exists())) {
             dir.mkdir();
         }
 
@@ -1683,8 +1668,6 @@ mediaPlayer1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
         }
 
     }
-
-
 
 
     private void setPlayerDuration() {
@@ -1865,14 +1848,17 @@ mediaPlayer1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
         }
     }
 
+
     @NonNull
     @Override
     public Lifecycle getLifecycle() {
         return super.getLifecycle();
     }
 
-    public void closeHomeFragment(){
+    public void closeHomeFragment() {
         ifAudioIsPlaying();
         setMax();
     }
+
+
 }

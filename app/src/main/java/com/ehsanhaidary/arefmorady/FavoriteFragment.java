@@ -3,6 +3,8 @@ package com.ehsanhaidary.arefmorady;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -20,6 +22,7 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Environment;
 import android.os.Handler;
+import android.os.IBinder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -1071,9 +1074,9 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (fromUser) {
-                    mediaPlayer1.seekTo(progress);
+                    audioService.mediaPlayer.seekTo(progress);
                 }
-                playerPosition1.setText(convertFormat(mediaPlayer1.getCurrentPosition()));
+                playerPosition1.setText(convertFormat(audioService.mediaPlayer.getCurrentPosition()));
             }
 
             @Override
@@ -1090,9 +1093,9 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (fromUser) {
-                    mediaPlayer1.seekTo(progress);
+                    audioService.mediaPlayer.seekTo(progress);
                 }
-                playerPosition2.setText(convertFormat(mediaPlayer1.getCurrentPosition()));
+                playerPosition2.setText(convertFormat(audioService.mediaPlayer.getCurrentPosition()));
             }
 
             @Override
@@ -1109,9 +1112,9 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (fromUser) {
-                    mediaPlayer1.seekTo(progress);
+                    audioService.mediaPlayer.seekTo(progress);
                 }
-                playerPosition3.setText(convertFormat(mediaPlayer1.getCurrentPosition()));
+                playerPosition3.setText(convertFormat(audioService.mediaPlayer.getCurrentPosition()));
             }
 
             @Override
@@ -1128,9 +1131,9 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (fromUser) {
-                    mediaPlayer1.seekTo(progress);
+                    audioService.mediaPlayer.seekTo(progress);
                 }
-                playerPosition4.setText(convertFormat(mediaPlayer1.getCurrentPosition()));
+                playerPosition4.setText(convertFormat(audioService.mediaPlayer.getCurrentPosition()));
             }
 
             @Override
@@ -1147,9 +1150,9 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (fromUser) {
-                    mediaPlayer1.seekTo(progress);
+                    audioService.mediaPlayer.seekTo(progress);
                 }
-                playerPosition5.setText(convertFormat(mediaPlayer1.getCurrentPosition()));
+                playerPosition5.setText(convertFormat(audioService.mediaPlayer.getCurrentPosition()));
             }
 
             @Override
@@ -1166,9 +1169,9 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (fromUser) {
-                    mediaPlayer1.seekTo(progress);
+                    audioService.mediaPlayer.seekTo(progress);
                 }
-                playerPosition6.setText(convertFormat(mediaPlayer1.getCurrentPosition()));
+                playerPosition6.setText(convertFormat(audioService.mediaPlayer.getCurrentPosition()));
             }
 
             @Override
@@ -1185,9 +1188,9 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (fromUser) {
-                    mediaPlayer1.seekTo(progress);
+                    audioService.mediaPlayer.seekTo(progress);
                 }
-                playerPosition7.setText(convertFormat(mediaPlayer1.getCurrentPosition()));
+                playerPosition7.setText(convertFormat(audioService.mediaPlayer.getCurrentPosition()));
             }
 
             @Override
@@ -1204,9 +1207,9 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (fromUser) {
-                    mediaPlayer1.seekTo(progress);
+                    audioService.mediaPlayer.seekTo(progress);
                 }
-                playerPosition8.setText(convertFormat(mediaPlayer1.getCurrentPosition()));
+                playerPosition8.setText(convertFormat(audioService.mediaPlayer.getCurrentPosition()));
             }
 
             @Override
@@ -1223,9 +1226,9 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (fromUser) {
-                    mediaPlayer1.seekTo(progress);
+                    audioService.mediaPlayer.seekTo(progress);
                 }
-                playerPosition9.setText(convertFormat(mediaPlayer1.getCurrentPosition()));
+                playerPosition9.setText(convertFormat(audioService.mediaPlayer.getCurrentPosition()));
             }
 
             @Override
@@ -1242,9 +1245,9 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (fromUser) {
-                    mediaPlayer1.seekTo(progress);
+                    audioService.mediaPlayer.seekTo(progress);
                 }
-                playerPosition10.setText(convertFormat(mediaPlayer1.getCurrentPosition()));
+                playerPosition10.setText(convertFormat(audioService.mediaPlayer.getCurrentPosition()));
             }
 
             @Override
@@ -1276,11 +1279,77 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
     }
 
 
+    private void audioCompleted() {
+        switch (MEDIA_PLAYER) {
+            case 1:
+                pauseButton1.setVisibility(View.GONE);
+                playButton1.setVisibility(View.VISIBLE);
+                audioService.setMediaPlayerToZero();
+//                seekBar1.setMax(0);
+                break;
+            case 2:
+                pauseButton2.setVisibility(View.GONE);
+                playButton2.setVisibility(View.VISIBLE);
+                audioService.setMediaPlayerToZero();
+//                seekBar1.setMax(0);
+                break;
+            case 3:
+                pauseButton3.setVisibility(View.GONE);
+                playButton3.setVisibility(View.VISIBLE);
+//                seekBar1.setMax(0);
+                audioService.setMediaPlayerToZero();
+                break;
+            case 4:
+                pauseButton4.setVisibility(View.GONE);
+                playButton4.setVisibility(View.VISIBLE);
+//                seekBar1.setMax(0);
+                audioService.setMediaPlayerToZero();
+                break;
+            case 5:
+                pauseButton5.setVisibility(View.GONE);
+                playButton5.setVisibility(View.VISIBLE);
+//                seekBar1.setMax(0);
+                audioService.setMediaPlayerToZero();
+                break;
+            case 6:
+                pauseButton6.setVisibility(View.GONE);
+                playButton6.setVisibility(View.VISIBLE);
+//                seekBar1.setMax(0);
+                audioService.setMediaPlayerToZero();
+                break;
+            case 7:
+                pauseButton7.setVisibility(View.GONE);
+                playButton7.setVisibility(View.VISIBLE);
+//                seekBar1.setMax(0);
+                audioService.setMediaPlayerToZero();
+                break;
+            case 8:
+                pauseButton8.setVisibility(View.GONE);
+                playButton8.setVisibility(View.VISIBLE);
+//                seekBar1.setMax(0);
+                audioService.setMediaPlayerToZero();
+                break;
+            case 9:
+                pauseButton9.setVisibility(View.GONE);
+                playButton9.setVisibility(View.VISIBLE);
+//                seekBar1.setMax(0);
+                audioService.setMediaPlayerToZero();
+                break;
+            case 10:
+                pauseButton10.setVisibility(View.GONE);
+                playButton10.setVisibility(View.VISIBLE);
+//                seekBar1.setMax(0);
+                audioService.setMediaPlayerToZero();
+                break;
+        }
+    }
+
+
     private void ifAudioIsPlaying() {
         try {
-            if (mediaPlayer1.isPlaying()) {
-                mediaPlayer1.pause();
-                mediaPlayer1.seekTo(0);
+            if (audioService.mediaPlayer.isPlaying()) {
+                audioService.mediaPlayer.pause();
+                audioService.mediaPlayer.seekTo(0);
                 switch (MEDIA_PLAYER) {
                     case 1:
                         pauseButton1.setVisibility(View.GONE);
@@ -1336,14 +1405,14 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
         super.onSaveInstanceState(outState);
 
         outState.putInt("media_player", MEDIA_PLAYER);
-        if (mediaPlayer1.isPlaying()) {
-            outState.putInt("saveInt1", mediaPlayer1.getCurrentPosition());
+        if (audioService.mediaPlayer.isPlaying()) {
+            outState.putInt("saveInt1", audioService.mediaPlayer.getCurrentPosition());
             outState.putString("saveString1", "playing");
-        } else if (!mediaPlayer1.isPlaying()) {
+        } else if (!audioService.mediaPlayer.isPlaying()) {
             outState.putString("saveString1", "notPlaying");
             if (MEDIA_PLAYER > 0) {
-                if (mediaPlayer1.getCurrentPosition() > 0) {
-                    outState.putInt("saveInt1", mediaPlayer1.getCurrentPosition());
+                if (audioService.mediaPlayer.getCurrentPosition() > 0) {
+                    outState.putInt("saveInt1", audioService.mediaPlayer.getCurrentPosition());
                 }
             }
         }
@@ -1369,34 +1438,34 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
                 addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         switch (whichAudio) {
             case 1:
-                intent.putExtra(Intent.EXTRA_TEXT, "1");
+                intent.putExtra(Intent.EXTRA_TEXT, "جوابات و احکام: نوشتن 786، تقدیر، احتلام، اعتکاف و گروی.");
                 break;
             case 2:
-                intent.putExtra(Intent.EXTRA_TEXT, "2");
+                intent.putExtra(Intent.EXTRA_TEXT, "جوابات و احکام: آذان، اذکار وضو و نماز، آرایش زن، ازدواج و تراویح.");
                 break;
             case 3:
-                intent.putExtra(Intent.EXTRA_TEXT, "3");
+                intent.putExtra(Intent.EXTRA_TEXT, "جوابات و احکام: تعویذ، گروی، شلوار تنگ، مال دزدی...");
                 break;
             case 4:
-                intent.putExtra(Intent.EXTRA_TEXT, "4");
+                intent.putExtra(Intent.EXTRA_TEXT, "جوابات و احکام: استفراغ در رمضان، اسفند، صدقه، تلویزیون، طریقت.");
                 break;
             case 5:
-                intent.putExtra(Intent.EXTRA_TEXT, "5");
+                intent.putExtra(Intent.EXTRA_TEXT, "جوابات و احکام: صیغه، عقیقه، عکاسی، فاتحه خوانی، کشتن جادوگر.");
                 break;
             case 6:
-                intent.putExtra(Intent.EXTRA_TEXT, "6");
+                intent.putExtra(Intent.EXTRA_TEXT, "جوابات و احکام: انواح وحی، مال دزدی، بد ترین نامحرم، نخ ابرو.");
                 break;
             case 7:
-                intent.putExtra(Intent.EXTRA_TEXT, "7");
+                intent.putExtra(Intent.EXTRA_TEXT, "جوابات و احکام: رفع یدین، سرودملی بوسیدن قرآن، بوسیدن دست وپا.");
                 break;
             case 8:
-                intent.putExtra(Intent.EXTRA_TEXT, "8");
+                intent.putExtra(Intent.EXTRA_TEXT, "جوابات و احکام: بیع وفا، پوشیدن یخن، سیگار، پول دادن به قاری.");
                 break;
             case 9:
-                intent.putExtra(Intent.EXTRA_TEXT, "9");
+                intent.putExtra(Intent.EXTRA_TEXT, "جوابات و احکام: ترک جماعت در کرونا، جهاد، زکات، حقوق زن بر مرد.");
                 break;
             case 10:
-                intent.putExtra(Intent.EXTRA_TEXT, "10");
+                intent.putExtra(Intent.EXTRA_TEXT, "جوابات و احکام: جماعت تبلیغ، زنا، کارتونی، سریال قیام، موسیقی.");
                 break;
         }
         getContext().startActivity(Intent.createChooser(intent, "ارسال توسط:"));
@@ -1486,7 +1555,7 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
                     @Override
                     public void run() {
                         //set progress on seekBar
-                        seekBar1.setProgress(mediaPlayer1.getCurrentPosition());
+                        seekBar1.setProgress(audioService.mediaPlayer.getCurrentPosition());
 
                         // handler post delay for 0.5s
                         handler1.postDelayed(this, 500);
@@ -1498,7 +1567,7 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
                     @Override
                     public void run() {
                         //set progress on seekBar
-                        seekBar2.setProgress(mediaPlayer1.getCurrentPosition());
+                        seekBar2.setProgress(audioService.mediaPlayer.getCurrentPosition());
 
                         // handler post delay for 0.5s
                         handler2.postDelayed(this, 500);
@@ -1510,7 +1579,7 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
                     @Override
                     public void run() {
                         //set progress on seekBar
-                        seekBar3.setProgress(mediaPlayer1.getCurrentPosition());
+                        seekBar3.setProgress(audioService.mediaPlayer.getCurrentPosition());
 
                         // handler post delay for 0.5s
                         handler3.postDelayed(this, 500);
@@ -1522,7 +1591,7 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
                     @Override
                     public void run() {
                         //set progress on seekBar
-                        seekBar4.setProgress(mediaPlayer1.getCurrentPosition());
+                        seekBar4.setProgress(audioService.mediaPlayer.getCurrentPosition());
 
                         // handler post delay for 0.5s
                         handler4.postDelayed(this, 500);
@@ -1534,7 +1603,7 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
                     @Override
                     public void run() {
                         //set progress on seekBar
-                        seekBar5.setProgress(mediaPlayer1.getCurrentPosition());
+                        seekBar5.setProgress(audioService.mediaPlayer.getCurrentPosition());
 
                         // handler post delay for 0.5s
                         handler5.postDelayed(this, 500);
@@ -1546,7 +1615,7 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
                     @Override
                     public void run() {
                         //set progress on seekBar
-                        seekBar6.setProgress(mediaPlayer1.getCurrentPosition());
+                        seekBar6.setProgress(audioService.mediaPlayer.getCurrentPosition());
 
                         // handler post delay for 0.5s
                         handler6.postDelayed(this, 500);
@@ -1558,7 +1627,7 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
                     @Override
                     public void run() {
                         //set progress on seekBar
-                        seekBar7.setProgress(mediaPlayer1.getCurrentPosition());
+                        seekBar7.setProgress(audioService.mediaPlayer.getCurrentPosition());
 
                         // handler post delay for 0.5s
                         handler7.postDelayed(this, 500);
@@ -1570,7 +1639,7 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
                     @Override
                     public void run() {
                         //set progress on seekBar
-                        seekBar8.setProgress(mediaPlayer1.getCurrentPosition());
+                        seekBar8.setProgress(audioService.mediaPlayer.getCurrentPosition());
 
                         // handler post delay for 0.5s
                         handler8.postDelayed(this, 500);
@@ -1582,7 +1651,7 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
                     @Override
                     public void run() {
                         //set progress on seekBar
-                        seekBar9.setProgress(mediaPlayer1.getCurrentPosition());
+                        seekBar9.setProgress(audioService.mediaPlayer.getCurrentPosition());
 
                         // handler post delay for 0.5s
                         handler9.postDelayed(this, 500);
@@ -1594,7 +1663,7 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
                     @Override
                     public void run() {
                         //set progress on seekBar
-                        seekBar10.setProgress(mediaPlayer1.getCurrentPosition());
+                        seekBar10.setProgress(audioService.mediaPlayer.getCurrentPosition());
 
                         // handler post delay for 0.5s
                         handler10.postDelayed(this, 500);
@@ -1651,6 +1720,72 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
         }
     }
 
+    private void startService() {
+        Intent audioServiceIntent = new Intent(getContext(), AudioService.class);
+//        audioServiceIntent.putExtra("numberOfAudio", numberOfAudio);
+        getActivity().startService(audioServiceIntent);
+//        audioService.onCompleted();
+
+        audioService.mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                Toast.makeText(audioService, "com", Toast.LENGTH_SHORT).show();
+                audioService.onCompletion(mp);
+//                setMaxToZero();
+//                setRunnableNull();
+//                setMax();
+//                ifAudioIsPlaying();
+                audioCompleted();
+            }
+        });
+    }
+
+    // Background Code
+    @Override
+    public void onServiceConnected(ComponentName name, IBinder service) {
+        AudioService.MyBinder myBinder = (AudioService.MyBinder) service;
+        audioService = myBinder.getService();
+        audioService.setCallBack(this);
+    }
+
+    @Override
+    public void onServiceDisconnected(ComponentName name) {
+        audioService = null;
+    }
+
+    @Override
+    public void onResume() {
+        Intent intent = new Intent(getContext(), AudioService.class);
+        getActivity().bindService(intent, this, Context.BIND_AUTO_CREATE);
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        getActivity().unbindService(this);
+    }
+
+
+    @Override
+    public void btn_playPauseClicked() {
+
+    }
+
+    @Override
+    public void btn_prevClicked() {
+
+    }
+
+    @Override
+    public void btn_nextClicked() {
+
+    }
+
+    @Override
+    public void btn_clearClicked() {
+
+    }
 
     public void closeHomeFragment() {
         ifAudioIsPlaying();
