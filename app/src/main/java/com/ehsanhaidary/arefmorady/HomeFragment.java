@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -1159,6 +1160,27 @@ public class HomeFragment extends Fragment implements ServiceConnection, ActionP
                         TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(duration)));
     }
 
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+       /* outState.putInt("media_player", MEDIA_PLAYER);
+        if (audioService.isPlaying()) {
+            outState.putInt("saveInt1", audioService.getCurrentPosition());
+            outState.putString("saveString1", "playing");
+        } else if (!audioService.isPlaying()) {
+            outState.putString("saveString1", "notPlaying");
+            if (MEDIA_PLAYER > 0) {
+                if (audioService.getCurrentPosition() > 0) {
+                    outState.putInt("saveInt1", audioService.getCurrentPosition());
+                }
+            }
+        }
+
+        ifAudioIsPlaying();*/
+
+    }
+
 
     //sharing audios
     private void shareAudios(String name, int whichAudio) {
@@ -1561,6 +1583,33 @@ public class HomeFragment extends Fragment implements ServiceConnection, ActionP
     }
 
 
+    // Background Code
+    @Override
+    public void onServiceConnected(ComponentName name, IBinder service) {
+        AudioService.MyBinder myBinder = (AudioService.MyBinder) service;
+        audioService = myBinder.getService();
+        audioService.setCallBack(this);
+    }
+
+    @Override
+    public void onServiceDisconnected(ComponentName name) {
+        audioService = null;
+    }
+
+    @Override
+    public void onResume() {
+        Intent intent = new Intent(getContext(), AudioService.class);
+        getActivity().bindService(intent, this, Context.BIND_AUTO_CREATE);
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        getActivity().unbindService(this);
+    }
+
+
     void setMediaPlayerDurations() {
         //get duration of player
         playerDuration1.setText("18:37");
@@ -1855,13 +1904,4 @@ public class HomeFragment extends Fragment implements ServiceConnection, ActionP
         getActivity().stopService(new Intent(getContext(), AudioService.class));
     }
 
-    @Override
-    public void onServiceConnected(ComponentName name, IBinder service) {
-
-    }
-
-    @Override
-    public void onServiceDisconnected(ComponentName name) {
-
-    }
 }

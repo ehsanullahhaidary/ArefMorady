@@ -4,74 +4,353 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".SettingsFragment"
-    android:padding="15dp">
+    android:padding="15dp"
+    tools:context=".SettingsFragment">
 
 
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_round_for_audio"
+        android:padding="2dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/bg_round_for_audio"
-            android:padding="2dp">
-            <LinearLayout
+            android:background="@drawable/bg_round_for_middle">
+
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/bg_round_for_middle">
+                android:layout_height="match_parent">
 
-                <ScrollView
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <TextView
+                    android:layout_height="wrap_content">
 
-                        android:textSize="20sp"
-                        android:layout_margin="5dp"
+                    <ImageView
+                        android:id="@+id/molana"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:src="@drawable/molana_round"
+                        android:layout_alignParentTop="true"
+                        android:layout_margin="20dp"
+                        />
+
+
+                    <TextView
+                        android:layout_below="@+id/molana"
+                        android:id="@+id/firstTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="مختصری در مورد دارالعلوم عالی هرات \n
-دارالعلوم عالی هرات، یکی از معتبرترین و قوی‌ترین مراکز دینی خصوصی در سطح کشور بوده که به تعلیم و تربیه‌ی ملت مسلمان افغانستان در بخش‌های متعدد دینی میپردازد. \n
-پیشینه‌ی بلند این مرکز علمی، حکایت از قبولیت آن در نزد خالق و خلق دارد. \n
-تعمیر نخستین این دارالعلوم به سال (    ) بر می‌گردد، اما تعمیر مجدد این مرکز دینی در سال (1389) شروع شد و در مدت سه سال به پایه‌ی اکمال رسید.\n
-بخش‌های فعالیت:\n
-فعالیت این مرکز بزرگ دینی در بخش های ذیل به گونة قوی و مثمر میباشد:\n
-1- دارالحدیث: سالانه دل و دماغ صدها تن از دوست‌داران سنت نبوی را با انوار احادیث نبوی منور میگردد.\n
-2- شعبة تخصص فقه حنفی: سالانه میزبان ده ها نفر از علماء و نخبگانی است که از گوشه گوشه‌ی افغانستان برای آموزش‌های عالی و تخصص فقه حنفی بدینجا می‌آیند. \n
-3- هیئت تحقیق دارالافتاء: این بخش از دارالعلوم، از علماء و دانشمندانی تشکیل شده، که موضوعات روز را تحقیق و بررسی نموده و حکم شرعی آن را مطابق فقه اسلامی صادر می‌نمایند و در صورت لزوم به شعبه‌ی فرهنگی سپرده و در میان احاده افراد جامعه به صورت رایگان توزیع می‌نمایند.  \n
-4- دارالحفاظ: این مرکز با داشتن دو شعبه‌ی مجزا و استادان مجرب و لایق، به شیوه‌های اکادمیک و سیستماتیک، مصروف خدمات قرآنی در بخش‌های تجوید، حفظ و زیبا خوانی قرآن‌کریم بوده و همه ساله تعداد زیادی از فرزندان این ملت را که کلام خدای سبحان در حافظه‌ی خود جای داده اند را به جامعه اسلامی تقدیم می‌نماید. \n
-5- شعبة ناظره: این بخش نیز با داشتن دوشعبه مجزا، برای خدمت به نسل آینده‌ی افغانستان توسط استادان لایق و مجرب و دلسوز سرپرستی شده و در بخش‌های روخوانی، روان‌خوانی و زیباخوانی قرآن‌کریم و آموزش‌های اساسی – متناسب حال آنان- به صورت کاملاً رایگان در خدمت مردم مسلمان این دیار قرار داشته و همه ساله صدها کودک این سرزمین را با کلام جاویدان خداوند سبحان آشنا می‌نماید. \n
-6- جامعة البنات: شعبة بنات دارالعلوم عالی هرات که جدید التأسیس بوده و با نصاب کامل آغاز به فعالیت نموده و هم اکنون بیش از دوصد دختر و زن در آن مشغول فراگیری قرآن‌عظیم‌الشأن می‌باشد. مسئولین دارالعلوم مصمم اند تا از سال آینده‌ی تحصیلی - بعد از رمضان المبارک- اجرای نصاب کامل آن را روی دست بگیرند و به صورت  مستقل، با تدریس اساتید خواهر برنامه‌های آن را به حوال و قوه‌ی الهی به پیش گیرند. \n
-7- شعبه‌ی عقائد: این شعبه از جایگاه بخصوصی در این دارالعلوم برخوردار بوده و با داشتن اعضای مجرب، که در حوزه‌های همچون تصنیف، تألیف، رد شبهات فِرَق و ادیان باطله مشغول فعالیت اند و همیشه مدافع عقیده ومذهب بوده و به رد شکوک و شبهات کژ فکران و باژگونه نظران می‌پردازند. \n
-8- ریاست دارالعلوم: این بخش اختصاص داده شده به دید و بازدید مهمانان داخلی وخارجی با شیخ بزرگ (حفظه‌الله)، که ایشان درین مکان، با مهمانان ملاقات می‌کنند. \n
-9- ریاست تعلیمات: این شعبه یکی از مهم‌ترین بخش‌های این مرکز دینی می‌باشد، که در بخش جذب طلاب، ترتیب نظام درسی مدرسین در اوقات مختلف سال، برگذاری امتحانات و اعلان نتایج آن می‌پردازد. \n
-11- دارالإقامه: یکی از شعبه‌های دارالعلوم که وظیفه تقسیم اطاق‌ها در دارالعلوم و نظم و انتظام طلاب را داخل دارالعلوم در اقامت‌گاه شبانه آن‌ها بر عهده دارد. \n
-12- شعبه‌ی فرهنگی و کامپیوتر: این شعبه در بخش‌های فرهنگی مصروف فعالیت بوده و به گونه‌ی مستمر و با استفاده از تکنولوژی روز، به نشر و پخش فکر و فرهنگ اسلامی می‌پردازد.\n
-تهیه‌ی بروشور، جزوات فقهی و عقیدتی و پیش‌برد صفحه‌ی فیسبوک، ثبت و نشر سخنرانی‌های روز جمعه و درس صحیح بخاری، مربوط این شعبه می‌باشد. \n
-13- اداره‌ی فصل‌نامه‌ی علمی، تحقیقی، اجتماعی رحمت: فصل‌نامه‌ی رحمت، ارگان نشراتی دارالعلوم بوده که هر فصل یک‌بار وارد بازار علم و فرهنگ این دیار می‌شود. اعضای هیئت مدیره‌ی این فصل‌نامه را علماء و محقیقنی تشکیل می‌دهد که به صورت علمی و اساسی به واکاوی موضوعات دشوار دینی پرداخته و با باز کردن درب جدیدی فرا روی نسل جدید این امت – از اقشار مختلف- به تبیین حقایق می‌پردازد. \n
-14- کتاب‌خانه‌ی مولانا محمود الحسن دیوبندی: این بخش، یکی از ارزشمندتر بخش‌های دارالعلوم به حساب می‌آید، که هزاران جلد کتاب نفیس را در موضوعات مختلف علمی در خود جای داده است. \n
-کتاب‌های کتاب‌خانه‌ی دارالعلوم به دو بخش تقسیم می‌شود. \n
-بخش نخست آن عبارت از کتاب‌های می‌باشد که طلاب دارالعلوم در طی سال علمی خویش می‌خوانند. ریاست دارالعلوم کتاب‌های درسی طلاب را تهیه نموده و به صورت رایگان در خدمت طلاب علوم دینی قرار داده و حتی پاره‌ای از کتاب‌های نادر را از کشور های دیگر تهیه نموده و در اختیار طلاب علوم دینی قرار داده است. \n
-بخش دیگر کتاب‌خانه، عبارت از کتاب‌های عامه می‌باشد. در این بخش کتاب‌های تفسیر، اصول تفسیر، حدیث، اصول حدیث، عقیده، سیرت، تاریخ، اندیشه و... وجود داشته و همه روزه به روی طلاب، علما و عموم کتاب‌دوستان و کتاب خوانان باز می‌باشد. \n
-15- هیئت تالیف و ترجمه دارالعلوم: اعضای این بخش را مولفان و مترجمانی تشکیل می‌دهد که موضوعات مهم دینی را در قالب کتاب و جزوه تالیف و ترجمه نموده و در اختیار عموم مردم قرار می‌دهند. \n
-این بخش تا کنون کتاب‌های متعددی را تالیف و ترجمه نموده و به دسترس کتاب‌دوستان و کتاب‌خوانان قرار داده است. \n
-16- لنگر (طعام‌خانه): یکی از شعبات پُرکار دارالعلوم بوده که نظام غذایی طلاب و مهمانان را زیر نظر داشته و با دارا بودن هیئتِ کاردیده و کارآزموده، امر تهیه غذا را عهده‌داری می‌نماید. \n
-17- مطبعه: مطبعه‌ی دارالعلوم یکی دیگر از بخش‌های اساسی آن می‌باشد. در این بخش، خدمات چاپی دارالعلوم به پیش برده می‌شود. \n
-مطبعه‌ی دارالعلوم با دارا بودن مدرن‌ترین ماشین‌های چاپ توانسته است، کتاب‌های ترجمه شده‌ی هئیت تالیف و ترجمه، بروشورها، جزوات علمی و عقیدتی، برگه‌های امتحانی، اعلانات و... را به چاپ به رساند. \n
-18- مسجد جامع سعدیه: مسجد جامع سعدیه که در صحن دارالعلوم قرار دارد، از سه طبق تشکیل شده؛ مسجد فوقانی، تحتانی و همکف.  این مسجد جامع، همه روزه در نمازهای پنجگانه نزدیک به هزار نفر را در خود جای می‌دهد و هر هفته با اشتراک بیش از سه هزار نفر در نماز جمعه به امامت و خطابت مولانا مطیع الله مولوی‌زاده (فاضل دارالعلوم دیوبند) در آن شرکت می‌نمایند. \n
+                        android:layout_margin="5dp"
+                        android:text="مختصری از فعالیت های دارالعلوم عالی هرات:\n
+دارالعلوم عالی هرات، که در مسجد جامع علامه تفتازانی «رحمه الله» استقرار دارد، یکی از معتبرترین و قوی‌ترین مراکز دینی خصوصی در سطح کشور بوده که همواره به تعلیم و تربیه‌ی فرزندان ملت مسلمان افغانستان در بخش‌های متعدد دینی مصروف می باشد.\n
+پیشینه‌ی بلند این مرکز علمی، حکایت از قبولیت آن در نزد خالق و خلق دارد.\n
+تعمیر نخستین این مسجد به دوران خلافت حضرت عثمان غنی رضی الله عنه بر می‌گردد، اما تعمیر مجدد این مرکز دینی در سال (1387) شروع و در مدت سه سال به پایه‌ی اکمال رسید.\n
+بخش‌های فعالیت\n
+فعالیت این مرکز بزرگ دینی در بخش های ذیل به گونه قوی و مثمر میباشد:\n
+1- دارالحدیث: در این مکان و جایگاه متعالی سالانه دل و دماغ صدها تن از دوست‌داران احادیث نبوی توسط شیخ الإسلام خواجه مولانا جلیل الله مولوی زاده دامت برکاتهم العالیه و دیگر شیوخ و اساتذه علم حدیث با انوار احادیث گهر بار نبوی منور و معطر میگردد. \n
+2- شعبۀ تخصص فقه حنفی: این شعبه سالانه میزبان ده ها نفر از علماء و نخبگانی است که از گوشه گوشه‌ی افغانستان بعد از فراغت از تحصیلات نهائی علوم دینی برای آموزش‌های عالی و تخصص فقه حنفی بدینجا مراجعه و ثبت نام نموده و برای کسب تخصص در فقه حنفی مبادرت می ورزند.\n
+3- هیئت تحقیق دارالافتاء: این بخش از دارالعلوم، از علماء و دانشمندانی تشکیل شده، که موضوعات روز را تحقیق و بررسی نموده و حکم شرعی آن را مطابق فقه اسلامی صادر می‌نمایند و در صورت لزوم به شعبه‌ی فرهنگی سپرده و در میان آحاد افراد جامعه به صورت رایگان توزیع می‌نمایند.\n
+4- دارالحفاظ: این مرکز با داشتن دو شعبه‌ی مجزا و استادان مجرب و لایق، به شیوه‌های جدید و مؤثر، مصروف خدمات قرآنی در بخش‌های تجوید، حفظ و زیبا خوانی قرآن‌کریم بوده و همه ساله تعداد زیادی از فرزندان این ملت را به عنوان حافظان جیّد و برجسته کلام خداوند سبحان به جامعۀ اسلامی تقدیم می‌نماید.\n
+5- شعبۀ ناظره: این بخش نیز با داشتن دوشعبه مجزا، برای خدمت به نسل آینده‌ی افغانستان توسط استادان لایق و مجرب و دلسوز سرپرستی شده و در بخش‌های روخوانی، روان‌خوانی و زیباخوانی قرآن‌کریم و آموزش‌های اساسی – متناسب حال آنان- به صورت کاملاً رایگان در خدمت مردم مسلمان این دیار قرار داشته و همه ساله صدها کودک این سرزمین را با کلام جاویدان خداوند سبحان آشنا می‌نماید.\n
+6- جامعة البنات: شعبۀ جامعة البنات دارالعلوم عالی هرات که با نصاب کامل درسی جدیداً آغاز به فعالیت نموده است و هم اکنون بیش از دوصد دختر و زن در آن مشغول فراگیری قرآن‌عظیم‌الشأن و علوم دینی می‌باشد، نصاب تعلیمی شان از ابتداء تا دورۀ حدیث و دوره تخصص فقه حنفی ترتیب گردیده است که همه خواهران با تلاش و جدّیت تمام و سعی و کوشش اساتذه در مدت هفت سال تحصیل به حول و قوۀ الهی مدارج عالی تحصیلات نهائی دوره حدیث و تخصص فقه حنفی را بدست می آورند.\n
+7- شعبه‌ی عقائد: این شعبه از جایگاه بخصوصی در این دارالعلوم برخوردار بوده و با داشتن اعضای مجرب، که در حوزه‌های همچون تصنیف، تألیف، رد شبهات فِرَق و ادیان باطله مشغول فعالیت اند و همیشه مدافع عقیده ومذهب بوده و به رد شکوک و شبهات کژ فکران و واژگونه نظران می‌پردازند.\n
+8- ریاست دارالعلوم: این ریاست علاوه بر ادارۀ عمومی و کنترل تمام امورات دارالعلوم، زمینۀ دید و بازدید مهمانان داخلی وخارجی با شیخ الإسلام خواجه مولانا جلیل الله مولوی زاده (حفظه‌الله)، را مساعد می نمایند.\n
+9- ریاست تعلیمات: ریاست تعلیمات یکی از پر کار ترین و مهم‌ترین بخش‌های این مرکز دینی می‌باشد، که در امور جذب طلاب، ترتیب نظام درسی مدرسین در اوقات مختلف سال، برگزاری امتحانات و اعلان نتایج و برگزاری محافل مربوطه فعالیت می نماید.\n
+10- دارالإقامه: یکی دیگر از شعبه‌های دارالعلوم میباشد که وظیفه تقسیم اطاق‌ها و ایجاد نظم و انتظام و بررسی حاضری روزانه و شبانۀ طلاب و نیز پیگیری تطبیق قوانین و مقررات دارالعلوم در اقامت‌گاه شبانۀ آن‌ها را بر عهده دارد.\n
+11- شعبه‌ی فرهنگی و کامپیوتر: این شعبه در بخش‌های فرهنگی مصروف فعالیت بوده و به گونه‌ی مستمر و با استفاده از تکنولوژی روز، به نشر و پخش فکر و فرهنگ اسلامی می‌پردازد.\n
+تهیه‌ی بروشور، جزوات فقهی و عقیدتی و پیشبرد صفحه‌ی فیسبوک، ثبت و نشر سخنرانی‌های روز جمعه و درس صحیح بخاری، از اهّم وظایف این شعبه می‌باشد.\n
+12- اداره‌ی فصل‌نامه‌ی علمی، تحقیقی، اجتماعی رحمت: فصل‌نامه‌ی رحمت، ارگان نشراتی دارالعلوم بوده که هر فصل یک‌بار وارد بازار علم و فرهنگ این دیار می‌شود. اعضای هیئت مدیره‌ی این فصل‌نامه را علماء و محقیقنی تشکیل می‌دهند که به صورت علمی و اساسی به کنجکاوی موضوعات دشوار دینی پرداخته و با گشودن درب جدیدی فرا راه نسل جدید این امت به تبیین حقایق می‌پردازد.\n
+13- کتاب‌خانه‌ی مولانا محمود الحسن دیوبندی: این بخش، یکی از ارزشمندترین گنجینه ها و ذخائر علمی دارالعلوم به حساب می‌آید، که هزاران جلد کتاب نفیس در بارۀ موضوعات مختلف علمی شامل: تفسیر، اصول تفسیر، حدیث، اصول حدیث، عقیده، سیرت، تاریخ، ریاضی، فلسفه، منطق و غیره در آن موجود میباشد.\n
+14- هیئت تالیف و ترجمه دارالعلوم: اعضای این بخش را علمای جیّد و مؤلفان و مترجمانی تشکیل می‌دهند که موضوعات مهم دینی را در قالب کتاب و جزوه تالیف و ترجمه نموده و در اختیار عموم مردم قرار می‌دهند.\n
+این بخش تا کنون کتاب‌های متعددی را تالیف و ترجمه نموده و به دسترس طلبۀ علوم دینی و عموم مردم  قرار داده است. \n
+15- لنگر (طعام‌خانه): یکی از شعبات پُرکار دارالعلوم بوده که در طول سال و همه وقت نظام غذایی طلاب و مهمانان را زیر نظر داشته و با داشتن هیئتِ کاردیده و کارآزموده امر تهیه غذای طلاب و مهمانان محافل دستار بندی را عهده‌داری می‌نماید.\n
+16- مطبعه: مطبعه‌ی دارالعلوم یکی دیگر از بخش‌های اساسی و فعال می‌باشد که خدمات چاپی کتب دینی و مورد ضرورت دارالعلوم را به پیش برده و با داشتن مدرن‌ترین ماشین‌های چاپ توانسته است، کتاب‌های ترجمه شده‌ی هئیت تالیف و ترجمه، بروشورها، جزوات علمی و عقیدتی، برگه‌های امتحانی، اعلانات و... را به چاپ رسانده و به دسترس طلبۀ علوم دینی قرار دهد.  \n
+17- مسجد جامع علّامه تفتازانی«رحمه الله»: مسجد جامع علامه تفتازانی «رحمه الله» که در داخل دارالعلوم قرار دارد، اخیراً در سه طبقۀ؛ مسجد فوقانی، تحتانی و همکف به شکل پخته و اساسی و مجهّز ساخته شده است که همه روزه در نمازهای پنجگانه نزدیک به هزار نفر را در خود جای می‌دهد و نماز های جمعه با شکوه خاصی هر هفته با اشتراک بیش از پنج هزار نماز گزار در آن اقامه میگردد.\n
 \n
-\n
-\n
-\n
-" />
+تقدیر نامه:\n
+توفیق خدمت به نیکوترین و شایسته ترین مردم  که گرایش دینی دارند، فرصت گرانبها و پرافتخاری است که علاوه بر خشنودی مردم، موجبات رضایت خداوند سبحانه و تعالی را درپی خواهد داشت و بدون شک در این راستا کسانی موفق و سربلند خواهند بود که بتوانند به خوبی از این فرصت ها در راستای جلب رضایت وخشنودی خداوند جل علی شانه و خدمت صادقانه و مؤثر به مردم عملاً گامی بردارند. قطعا کار برای رضای خداوند عزوجل بدون اجر و پاداش نخواهد ماند.\n
+بدینوسیله بخش فرهنگی و دارالتألیف دارالعلوم عالی هرات لازم می داند تا از  زحمات بی شائبه و ایثارگرایانه حضرات هر یک:\n
+ محترم مولانا مفتی احسان الله مولوی زاده (حفظ الله) معاون دارالإفتأ دارالعلوم عالی هرات، محقق و مبین فتاوا؛\n
+محترم انجینیر احسان الله ( حیدری ) و محترم انجینیر ذبیح الله ( یعقوبی ) برنامه نویسان و اجرا کنندگان اپلیشن؛\n
+محترم صاحب خان ( صدیقی غوریانی ) گردآورنده و ترتیب و تنظیم کننده فتاوا.\n
+تقدیر و تشکر نموده و صحتمندی و عافیت از بلیات و آفت های زمینی و آسمانی و موفقیت و سرفرازی از آزمون های دنیوی و اخری را برای شان از بارگاه خالق منان مسئلت می نماید.\n
+"
+                        android:textSize="20sp" />
 
-                </ScrollView>
 
-            </LinearLayout>
+                    <!--<RelativeLayout
+                        android:id="@+id/firstLink"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/firstTextView">
+
+                        <TextView
+                            android:layout_margin="10dp"
+                            android:layout_alignParentRight="true"
+                            android:id="@+id/secondTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ارتباط با دارالعلوم عالی هرات:"
+                            android:textColor="#3C98DD"
+                            android:textSize="20sp"/>
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_below="@id/secondTextView">
+
+                            <ImageView
+                                android:layout_centerVertical="true"
+                                android:layout_margin="20dp"
+                                android:id="@+id/telegram"
+                                android:src="@drawable/telegram"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"/>
+                            <ImageView
+                                android:layout_centerVertical="true"
+                                android:layout_margin="20dp"
+                                android:layout_toRightOf="@id/telegram"
+                                android:id="@+id/facebook"
+                                android:src="@drawable/faecbook"
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"/>
+
+                        </RelativeLayout>
 
 
 
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
+                        android:id="@+id/secondLink"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/firstLink">
+
+                        <TextView
+                            android:layout_margin="10dp"
+                            android:layout_alignParentRight="true"
+                            android:id="@+id/thirdTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ارتباط با سازنده های برنامه:"
+                            android:textColor="#3C98DD"
+                            android:textSize="20sp"/>
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_below="@id/thirdTextView">
+
+                            <ImageView
+                                android:layout_centerVertical="true"
+                                android:layout_margin="20dp"
+                                android:id="@+id/adminTelegram"
+                                android:src="@drawable/telegram"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"/>
+                            <ImageView
+                                android:layout_centerVertical="true"
+                                android:layout_margin="20dp"
+                                android:layout_toRightOf="@id/adminTelegram"
+                                android:id="@+id/adminGmail"
+                                android:src="@drawable/gmail"
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"/>
+
+                        </RelativeLayout>
+
+
+
+                    </RelativeLayout>-->
+
+
+                    <TextView
+                        android:layout_margin="20dp"
+                        android:layout_below="@id/firstTextView"
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/secondTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ارتباط با ما:"
+                        android:textColor="#3C98DD"
+                        android:textSize="30sp"/>
+
+                    <RelativeLayout
+                        android:layout_centerHorizontal="true"
+                        android:id="@+id/links"
+                        android:layout_width="250dp"
+                        android:layout_height="80dp"
+                        android:layout_below="@+id/secondTextView">
+
+
+                        <TextView
+                            android:layout_alignParentLeft="true"
+                            android:id="@+id/daruloloomTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="دارالعلوم عالی هرات:"
+                            android:textColor="#3C98DD"
+                            android:paddingBottom="10dp"
+                            android:textSize="20sp"/>
+
+                        <TextView
+                            android:id="@+id/adminTextView"
+
+                            android:layout_alignParentRight="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="سازنده های برنامه:"
+                            android:textColor="#3C98DD"
+                            android:paddingBottom="10dp"
+                            android:textSize="20sp"/>
+
+
+                        <RelativeLayout
+                            android:layout_marginRight="30sp"
+                            android:id="@+id/firstLink"
+                            android:layout_width="120dp"
+                            android:layout_height="60dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_below="@+id/daruloloomTextView">
+
+
+
+                            <ImageView
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerVertical="true"
+                                android:layout_margin="10dp"
+                                android:id="@+id/telegram"
+                                android:src="@drawable/telegram"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"/>
+                            <ImageView
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_margin="10dp"
+                                android:layout_toRightOf="@id/telegram"
+                                android:id="@+id/facebook"
+                                android:src="@drawable/faecbook"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"/>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_alignParentRight="true"
+                            android:layout_below="@+id/adminTextView"
+                            android:id="@+id/secondLink"
+                            android:layout_width="120dp"
+                            android:layout_height="60dp"
+                            >
+
+
+
+                            <ImageView
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerVertical="true"
+                                android:layout_margin="10dp"
+                                android:id="@+id/adminTelegram"
+                                android:src="@drawable/telegram"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"/>
+                            <ImageView
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_margin="10dp"
+                                android:id="@+id/adminGmail"
+                                android:src="@drawable/gmail"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"/>
+
+                        </RelativeLayout>
+
+
+                        <!--<RelativeLayout
+                            android:layout_marginRight="30sp"
+                            android:id="@+id/firstLink"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true">
+
+
+
+                            <ImageView
+                                android:layout_below="@id/adminTextView"
+                                android:layout_centerVertical="true"
+                                android:layout_margin="10dp"
+                                android:id="@+id/telegram"
+                                android:src="@drawable/telegram"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"/>
+                            <ImageView
+                                android:layout_centerVertical="true"
+                                android:layout_margin="10dp"
+                                android:layout_toRightOf="@id/telegram"
+                                android:id="@+id/facebook"
+                                android:src="@drawable/faecbook"
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"/>
+
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:id="@+id/secondLink"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/firstLink">
+
+                            <TextView
+                                android:id="@+id/daruloloomTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="سازنده های برنامه:"
+                                android:textColor="#3C98DD"
+                                android:paddingBottom="20dp"
+                                android:textSize="20sp"/>
+
+                            <ImageView
+                                android:layout_below="@id/daruloloomTextView"
+                                android:layout_centerVertical="true"
+                                android:layout_margin="10dp"
+                                android:id="@+id/adminTelegram"
+                                android:src="@drawable/telegram"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"/>
+                            <ImageView
+                                android:layout_centerVertical="true"
+                                android:layout_margin="10dp"
+                                android:layout_toRightOf="@id/adminTelegram"
+                                android:id="@+id/adminGmail"
+                                android:src="@drawable/gmail"
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"/>
+
+                        </RelativeLayout>-->
+
+                    </RelativeLayout>
+
+
+
+                    <TextView
+                        android:layout_below="@+id/links"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="\n\n\n\n\n"/>
+
+
+                </RelativeLayout>
+
+            </ScrollView>
 
         </LinearLayout>
+
+
+    </LinearLayout>
 
 
 </LinearLayout>

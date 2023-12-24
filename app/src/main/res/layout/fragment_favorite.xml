@@ -50,7 +50,7 @@
                             android:layout_height="70dp"
                             android:layout_alignParentLeft="true"
                             android:layout_margin="10dp"
-                            android:src="@drawable/circle_cropped" />
+                            android:src="@drawable/ehsanullah_round" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -173,7 +173,7 @@
                             android:layout_height="70dp"
                             android:layout_alignParentLeft="true"
                             android:layout_margin="10dp"
-                            android:src="@drawable/circle_cropped" />
+                            android:src="@drawable/ehsanullah_round" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -297,7 +297,7 @@
                             android:layout_height="70dp"
                             android:layout_alignParentLeft="true"
                             android:layout_margin="10dp"
-                            android:src="@drawable/circle_cropped" />
+                            android:src="@drawable/ehsanullah_round" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -421,7 +421,7 @@
                             android:layout_height="70dp"
                             android:layout_alignParentLeft="true"
                             android:layout_margin="10dp"
-                            android:src="@drawable/circle_cropped" />
+                            android:src="@drawable/ehsanullah_round" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -545,7 +545,7 @@
                             android:layout_height="70dp"
                             android:layout_alignParentLeft="true"
                             android:layout_margin="10dp"
-                            android:src="@drawable/circle_cropped" />
+                            android:src="@drawable/ehsanullah_round" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -669,7 +669,7 @@
                             android:layout_height="70dp"
                             android:layout_alignParentLeft="true"
                             android:layout_margin="10dp"
-                            android:src="@drawable/circle_cropped" />
+                            android:src="@drawable/ehsanullah_round" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -789,7 +789,7 @@
                             android:layout_height="70dp"
                             android:layout_alignParentLeft="true"
                             android:layout_margin="10dp"
-                            android:src="@drawable/circle_cropped" />
+                            android:src="@drawable/ehsanullah_round" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -909,7 +909,7 @@
                             android:layout_height="70dp"
                             android:layout_alignParentLeft="true"
                             android:layout_margin="10dp"
-                            android:src="@drawable/circle_cropped" />
+                            android:src="@drawable/ehsanullah_round" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -1029,7 +1029,7 @@
                             android:layout_height="70dp"
                             android:layout_alignParentLeft="true"
                             android:layout_margin="10dp"
-                            android:src="@drawable/circle_cropped" />
+                            android:src="@drawable/ehsanullah_round" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -1149,7 +1149,7 @@
                             android:layout_height="70dp"
                             android:layout_alignParentLeft="true"
                             android:layout_margin="10dp"
-                            android:src="@drawable/circle_cropped" />
+                            android:src="@drawable/ehsanullah_round" />
 
                         <TextView
                             android:layout_width="wrap_content"

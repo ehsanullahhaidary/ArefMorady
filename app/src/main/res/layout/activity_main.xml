@@ -10,7 +10,7 @@
         android:id="@+id/logo"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:src="@drawable/circle_cropped"
+        android:src="@drawable/daruloloom"
         android:layout_centerInParent="true"
         android:layout_margin="50dp"
         />
@@ -23,7 +23,7 @@
         android:layout_centerInParent="true"
         android:layout_marginBottom="-86dp"
         android:fontFamily="cursive"
-        android:text="محمد عارف مرادی"
+        android:text="دارالعلوم عالی هرات"
         android:textSize="40sp" />
 
 </RelativeLayout>
