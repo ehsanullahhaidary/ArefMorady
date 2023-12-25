@@ -8,15 +8,20 @@
     android:id="@+id/mainLayout"
     tools:context=".HomeFragment">
 
-
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <RelativeLayout
+            android:layout_marginBottom="85dp"
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+
+
+
+
+
 
             <LinearLayout
                 android:id="@+id/first_layout"
@@ -38,6 +43,7 @@
                         android:layout_height="wrap_content">
 
                         <ImageView
+                            android:id="@+id/image1"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_alignParentLeft="true"
@@ -47,10 +53,12 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
                             android:layout_margin="15dp"
-                            android:text="الله متعال را همیشه تعریف نمایم"
-                            android:textSize="16sp" />
+                            android:layout_toRightOf="@+id/image1"
+                            android:textColor="#000000"
+                            android:textSize="16sp"
+                            android:text="جوابات و احکام: نوشتن 786،  تقدیر، احتلام، اعتکاف و گروی."
+                            />
 
                     </RelativeLayout>
 
@@ -161,6 +169,7 @@
                         android:layout_height="wrap_content">
 
                         <ImageView
+                            android:id="@+id/image2"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_alignParentLeft="true"
@@ -170,10 +179,11 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_margin="15dp"
-                            android:text="نامگذاری اطفال"
-                            android:textSize="16sp" />
+                            android:layout_toRightOf="@+id/image2"
+                            android:textColor="#000000"
+                            android:textSize="16sp"                            android:layout_margin="15dp"
+                            android:text="جوابات و احکام: آذان، اذکار وضو و نماز، آرایش زن، ازدواج و تراویح."
+                            />
 
                     </RelativeLayout>
 
@@ -285,6 +295,7 @@
                         android:layout_height="wrap_content">
 
                         <ImageView
+                            android:id="@+id/image3"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_alignParentLeft="true"
@@ -294,10 +305,11 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_margin="15dp"
-                            android:text="مسولیت پدر"
-                            android:textSize="16sp" />
+                            android:layout_toRightOf="@+id/image3"
+                            android:textColor="#000000"
+                            android:textSize="16sp"                            android:layout_margin="15dp"
+                            android:text="جوابات و احکام: تعویذ، گروی، شلوار تنگ، مال دزدی..."
+                            />
 
                     </RelativeLayout>
 
@@ -409,6 +421,7 @@
                         android:layout_height="wrap_content">
 
                         <ImageView
+                            android:id="@+id/image4"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_alignParentLeft="true"
@@ -418,10 +431,12 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
+                            android:layout_toRightOf="@+id/image4"
+                            android:textColor="#000000"
+                            android:textSize="16sp"
                             android:layout_margin="15dp"
-                            android:text="دین یعنی اطاعت"
-                            android:textSize="16sp" />
+                            android:text="جوابات و احکام: استفراغ در رمضان، اسفند، صدقه، تلویزیون، طریقت."
+                            />
 
                     </RelativeLayout>
 
@@ -534,6 +549,7 @@
                         android:layout_height="wrap_content">
 
                         <ImageView
+                            android:id="@+id/image5"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_alignParentLeft="true"
@@ -543,10 +559,12 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
+                            android:layout_toRightOf="@+id/image5"
+                            android:textColor="#000000"
+                            android:textSize="16sp"
                             android:layout_margin="15dp"
-                            android:text="زندگی طبق نبی (ص)"
-                            android:textSize="16sp" />
+                            android:text="جوابات و احکام: صیغه، عقیقه، عکاسی، فاتحه خوانی، کشتن جادوگر."
+                            />
 
                     </RelativeLayout>
 
@@ -656,6 +674,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <ImageView
+                            android:id="@+id/image6"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_alignParentLeft="true"
@@ -664,10 +683,12 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
+                            android:layout_toRightOf="@+id/image6"
+                            android:textColor="#000000"
+                            android:textSize="16sp"
                             android:layout_margin="15dp"
-                            android:text="بشارت دهیه"
-                            android:textSize="16sp" />
+                            android:text="جوابات و احکام: انواح وحی، مال دزدی، بد ترین نامحرم، نخ ابرو."
+                            />
 
                     </RelativeLayout>
 
@@ -774,6 +795,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <ImageView
+                            android:id="@+id/image7"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_alignParentLeft="true"
@@ -782,10 +804,12 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
+                            android:layout_toRightOf="@+id/image7"
+                            android:textColor="#000000"
+                            android:textSize="16sp"
                             android:layout_margin="15dp"
-                            android:text="مساجد آباد"
-                            android:textSize="16sp" />
+                            android:text="جوابات و احکام: رفع یدین، سرودملی بوسیدن قرآن، بوسیدن دست وپا."
+                            />
 
                     </RelativeLayout>
 
@@ -891,6 +915,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <ImageView
+                            android:id="@+id/image8"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_alignParentLeft="true"
@@ -899,10 +924,12 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
+                            android:layout_toRightOf="@+id/image8"
+                            android:textColor="#000000"
+                            android:textSize="16sp"
                             android:layout_margin="15dp"
-                            android:text="مردم داری"
-                            android:textSize="16sp" />
+                            android:text="جوابات و احکام: بیع وفا، پوشیدن یخن، سیگار، پول دادن به قاری."
+                            />
 
                     </RelativeLayout>
 
@@ -1009,6 +1036,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <ImageView
+                            android:id="@+id/image9"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_alignParentLeft="true"
@@ -1017,10 +1045,12 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
+                            android:layout_toRightOf="@+id/image9"
+                            android:textColor="#000000"
+                            android:textSize="16sp"
                             android:layout_margin="15dp"
-                            android:text="مزد در دین"
-                            android:textSize="16sp" />
+                            android:text="جوابات و احکام: ترک جماعت در کرونا، جهاد، زکات، حقوق زن بر مرد."
+                            />
 
                     </RelativeLayout>
 
@@ -1114,7 +1144,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ninth_layout"
-                android:layout_marginBottom="85dp"
                 android:background="@drawable/bg_round_for_audio"
                 android:padding="2dp">
                 <RelativeLayout
@@ -1126,6 +1155,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <ImageView
+                            android:id="@+id/image10"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_alignParentLeft="true"
@@ -1134,10 +1164,12 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
+                            android:layout_toRightOf="@+id/image10"
+                            android:textColor="#000000"
+                            android:textSize="16sp"
                             android:layout_margin="15dp"
-                            android:text="حقوق زن"
-                            android:textSize="16sp" />
+                            android:text="جوابات و احکام: جماعت تبلیغ، زنا، کارتونی، سریال قیام، موسیقی."
+                            />
 
                     </RelativeLayout>
 
@@ -1225,7 +1257,10 @@
             </LinearLayout>
 
 
-
+            <RelativeLayout
+                android:layout_below="@+id/tinth_layout"
+                android:layout_width="match_parent"
+                android:layout_height="85dp"/>
 
         </RelativeLayout>
     </ScrollView>

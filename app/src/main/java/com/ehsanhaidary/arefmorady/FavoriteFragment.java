@@ -41,6 +41,7 @@ import java.util.concurrent.TimeUnit;
 
 public class FavoriteFragment extends Fragment implements ServiceConnection, ActionPlaying {
 
+
     AudioService audioService;
 
     static final int REQUEST_CODE = 123;
@@ -727,6 +728,12 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
                 String state = null;
                 try {
                     state = Global.getStat(getActivity(), "favorite_state1");
+                    if (state == null) {
+                        favoriteButton1.setImageResource(R.drawable.ic_baseline_favorite_24);
+                        Global.saveState(getActivity(), "favorite_state1", "fill");
+                        return;
+                    }
+
                 } catch (Exception ignored) {
 
                 }
@@ -754,6 +761,12 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
                 String state = null;
                 try {
                     state = Global.getStat(getActivity(), "favorite_state2");
+                    if (state == null) {
+                        favoriteButton2.setImageResource(R.drawable.ic_baseline_favorite_24);
+                        Global.saveState(getActivity(), "favorite_state2", "fill");
+                        return;
+                    }
+
                 } catch (Exception ignored) {
 
                 }
@@ -780,6 +793,12 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
                 String state = null;
                 try {
                     state = Global.getStat(getActivity(), "favorite_state3");
+                    if (state == null) {
+                        favoriteButton3.setImageResource(R.drawable.ic_baseline_favorite_24);
+                        Global.saveState(getActivity(), "favorite_state3", "fill");
+                        return;
+                    }
+
                 } catch (Exception ignored) {
 
                 }
@@ -806,6 +825,12 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
                 String state = null;
                 try {
                     state = Global.getStat(getActivity(), "favorite_state4");
+                    if (state == null) {
+                        favoriteButton4.setImageResource(R.drawable.ic_baseline_favorite_24);
+                        Global.saveState(getActivity(), "favorite_state4", "fill");
+                        return;
+                    }
+
                 } catch (Exception ignored) {
 
                 }
@@ -832,6 +857,12 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
                 String state = null;
                 try {
                     state = Global.getStat(getActivity(), "favorite_state5");
+                    if (state == null) {
+                        favoriteButton5.setImageResource(R.drawable.ic_baseline_favorite_24);
+                        Global.saveState(getActivity(), "favorite_state5", "fill");
+                        return;
+                    }
+
                 } catch (Exception ignored) {
 
                 }
@@ -858,6 +889,12 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
                 String state = null;
                 try {
                     state = Global.getStat(getActivity(), "favorite_state6");
+                    if (state == null) {
+                        favoriteButton6.setImageResource(R.drawable.ic_baseline_favorite_24);
+                        Global.saveState(getActivity(), "favorite_state6", "fill");
+                        return;
+                    }
+
                 } catch (Exception ignored) {
 
                 }
@@ -884,6 +921,12 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
                 String state = null;
                 try {
                     state = Global.getStat(getActivity(), "favorite_state7");
+                    if (state == null) {
+                        favoriteButton7.setImageResource(R.drawable.ic_baseline_favorite_24);
+                        Global.saveState(getActivity(), "favorite_state7", "fill");
+                        return;
+                    }
+
                 } catch (Exception ignored) {
 
                 }
@@ -910,6 +953,12 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
                 String state = null;
                 try {
                     state = Global.getStat(getActivity(), "favorite_state8");
+                    if (state == null) {
+                        favoriteButton8.setImageResource(R.drawable.ic_baseline_favorite_24);
+                        Global.saveState(getActivity(), "favorite_state8", "fill");
+                        return;
+                    }
+
                 } catch (Exception ignored) {
 
                 }
@@ -936,6 +985,12 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
                 String state = null;
                 try {
                     state = Global.getStat(getActivity(), "favorite_state9");
+                    if (state == null) {
+                        favoriteButton9.setImageResource(R.drawable.ic_baseline_favorite_24);
+                        Global.saveState(getActivity(), "favorite_state9", "fill");
+                        return;
+                    }
+
                 } catch (Exception ignored) {
 
                 }
@@ -962,6 +1017,12 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
                 String state = null;
                 try {
                     state = Global.getStat(getActivity(), "favorite_state10");
+                    if (state == null) {
+                        favoriteButton10.setImageResource(R.drawable.ic_baseline_favorite_24);
+                        Global.saveState(getActivity(), "favorite_state10", "fill");
+                        return;
+                    }
+
                 } catch (Exception ignored) {
 
                 }
@@ -1766,6 +1827,10 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
         getActivity().unbindService(this);
     }
 
+    public void closeHomeFragment() {
+        ifAudioIsPlaying();
+        setMax();
+    }
 
     @Override
     public void btn_playPauseClicked() {
@@ -1786,10 +1851,4 @@ public class FavoriteFragment extends Fragment implements ServiceConnection, Act
     public void btn_clearClicked() {
 
     }
-
-    public void closeHomeFragment() {
-        ifAudioIsPlaying();
-        setMax();
-    }
-
 }

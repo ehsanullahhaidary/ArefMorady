@@ -3,6 +3,7 @@ package com.ehsanhaidary.arefmorady;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.widget.Toast;
 
 import static com.ehsanhaidary.arefmorady.ApplicationClass.ACTION_CLEAR;
 import static com.ehsanhaidary.arefmorady.ApplicationClass.ACTION_NEXT;

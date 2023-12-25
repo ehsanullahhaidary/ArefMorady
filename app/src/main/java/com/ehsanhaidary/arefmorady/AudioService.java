@@ -1,15 +1,23 @@
 package com.ehsanhaidary.arefmorady;
 
 import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.os.Binder;
+import android.os.Handler;
 import android.os.IBinder;
 import android.support.v4.media.session.MediaSessionCompat;
+import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -86,7 +94,7 @@ public class AudioService extends Service implements MediaPlayer.OnCompletionLis
                     }
                     break;
                 case "clear":
-                    if (actionName != null){
+                    if (actionName != null) {
                         actionPlaying.btn_clearClicked();
                     }
             }
@@ -196,7 +204,7 @@ public class AudioService extends Service implements MediaPlayer.OnCompletionLis
 
         Bitmap thumb = BitmapFactory.decodeResource(getResources(), R.drawable.ehsanullah_round);
 
-        if (showNotification){
+        if (showNotification) {
             notification = new NotificationCompat.Builder(this, CHANNEL_ID_2).
                     setSmallIcon(playPause)
                     .setLargeIcon(thumb)
@@ -213,7 +221,7 @@ public class AudioService extends Service implements MediaPlayer.OnCompletionLis
                     .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                     .build();
             startForeground(2, notification);
-        }else{
+        } else {
             /*notification = new NotificationCompat.Builder(this, CHANNEL_ID_2).
                     setSmallIcon(playPause)
                     .setLargeIcon(thumb)
@@ -237,8 +245,8 @@ public class AudioService extends Service implements MediaPlayer.OnCompletionLis
 
     }
 
-    void removeNotification(){
-        if (mediaPlayer.isPlaying()){
+    void removeNotification() {
+        if (mediaPlayer.isPlaying()) {
             mediaPlayer.stop();
         }
 

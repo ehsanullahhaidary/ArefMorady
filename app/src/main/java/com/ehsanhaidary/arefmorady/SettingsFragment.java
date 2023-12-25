@@ -12,11 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class SettingsFragment extends Fragment {
-
-
+    
     ImageView telegram, facebook, adminTelegram, adminGmail;
 
     @Override
@@ -61,7 +61,7 @@ public class SettingsFragment extends Fragment {
         });
     }
 
-    private void openLink(String url) {
+    private void openLink(String url){
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(url));
         startActivity(Intent.createChooser(intent, "بازکردن در:"));

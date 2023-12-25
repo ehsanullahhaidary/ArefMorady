@@ -3,18 +3,34 @@ package com.ehsanhaidary.arefmorady;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Lifecycle;
+
 import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
+import android.support.v4.media.session.MediaSessionCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,14 +38,6 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Lifecycle;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -39,11 +47,17 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.concurrent.TimeUnit;
 
-public class HomeFragment extends Fragment implements ServiceConnection, ActionPlaying {
+import static com.ehsanhaidary.arefmorady.ApplicationClass.ACTION_NEXT;
+import static com.ehsanhaidary.arefmorady.ApplicationClass.ACTION_PLAY;
+import static com.ehsanhaidary.arefmorady.ApplicationClass.ACTION_PREVIOUS;
+import static com.ehsanhaidary.arefmorady.ApplicationClass.CHANNEL_ID_2;
+
+public class HomeFragment extends Fragment implements ServiceConnection, ActionPlaying{
 
     static final int REQUEST_CODE = 123;
     int MEDIA_PLAYER = 0;
     AudioService audioService;
+
 
     //initializing variables
     TextView playerPosition1, playerDuration1, playerPosition2, playerDuration2,
@@ -64,6 +78,9 @@ public class HomeFragment extends Fragment implements ServiceConnection, ActionP
             playButton9, pauseButton9, favoriteButton9, shareButton9,
             playButton10, pauseButton10, favoriteButton10, shareButton10;
 
+
+           /* , mediaPlayer2, mediaPlayer3, mediaPlayer4, mediaPlayer5,
+            mediaPlayer6, mediaPlayer7, mediaPlayer8, mediaPlayer9, mediaPlayer10;*/
 
     Handler handler1 = new Handler();
     Handler handler2 = new Handler();
@@ -91,13 +108,16 @@ public class HomeFragment extends Fragment implements ServiceConnection, ActionP
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
+
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
 
         //Assign variables
         playerPosition1 = view.findViewById(R.id.player_position);
@@ -184,8 +204,135 @@ public class HomeFragment extends Fragment implements ServiceConnection, ActionP
         shareButton10 = view.findViewById(R.id.share_button_10);
 
 
+        //initialize mediaPlayer
+       /*mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref);
+        mediaPlayer2 = MediaPlayer.create(getContext(), R.raw.aref_1);
+        mediaPlayer3 = MediaPlayer.create(getContext(), R.raw.aref_2);
+        mediaPlayer4 = MediaPlayer.create(getContext(), R.raw.aref_3);
+        mediaPlayer5 = MediaPlayer.create(getContext(), R.raw.aref_4);
+        mediaPlayer6 = MediaPlayer.create(getContext(), R.raw.aref_5);
+        mediaPlayer7 = MediaPlayer.create(getContext(), R.raw.aref_6);
+        mediaPlayer8 = MediaPlayer.create(getContext(), R.raw.aref_7);
+        mediaPlayer9 = MediaPlayer.create(getContext(), R.raw.aref_8);
+        mediaPlayer10 = MediaPlayer.create(getContext(), R.raw.aref_9);*/
+
+
+        //initialize runnable
+        /*runnable1 = new Runnable() {
+            @Override
+            public void run() {
+                //set progress on seekBar
+                seekBar1.setProgress(mediaPlayer1.getCurrentPosition());
+
+                // handler post delay for 0.5s
+                handler1.postDelayed(this, 500);
+            }
+        };*/
+
+        /*runnable2 = new Runnable() {
+            @Override
+            public void run() {
+                //set progress on seekBar
+                seekBar2.setProgress(mediaPlayer2.getCurrentPosition());
+
+                // handler post delay for 0.5s
+                handler2.postDelayed(this, 500);
+            }
+        };
+
+        runnable3 = new Runnable() {
+            @Override
+            public void run() {
+                //set progress on seekBar
+                seekBar3.setProgress(mediaPlayer3.getCurrentPosition());
+
+                // handler post delay for 0.5s
+                handler3.postDelayed(this, 500);
+            }
+        };
+
+        runnable4 = new Runnable() {
+            @Override
+            public void run() {
+                //set progress on seekBar
+                seekBar4.setProgress(mediaPlayer4.getCurrentPosition());
+
+                // handler post delay for 0.5s
+                handler4.postDelayed(this, 500);
+            }
+        };
+
+        runnable5 = new Runnable() {
+            @Override
+            public void run() {
+                //set progress on seekBar
+                seekBar5.setProgress(mediaPlayer5.getCurrentPosition());
+
+                // handler post delay for 0.5s
+                handler5.postDelayed(this, 500);
+            }
+        };
+
+        runnable6 = new Runnable() {
+            @Override
+            public void run() {
+                //set progress on seekBar
+                seekBar6.setProgress(mediaPlayer6.getCurrentPosition());
+
+                // handler post delay for 0.5s
+                handler6.postDelayed(this, 500);
+            }
+        };
+
+        runnable7 = new Runnable() {
+            @Override
+            public void run() {
+                //set progress on seekBar
+                seekBar7.setProgress(mediaPlayer7.getCurrentPosition());
+
+                // handler post delay for 0.5s
+                handler7.postDelayed(this, 500);
+            }
+        };
+
+
+        runnable8 = new Runnable() {
+            @Override
+            public void run() {
+                //set progress on seekBar
+                seekBar8.setProgress(mediaPlayer8.getCurrentPosition());
+
+                // handler post delay for 0.5s
+                handler8.postDelayed(this, 500);
+            }
+        };
+
+        runnable9 = new Runnable() {
+            @Override
+            public void run() {
+                //set progress on seekBar
+                seekBar9.setProgress(mediaPlayer9.getCurrentPosition());
+
+                // handler post delay for 0.5s
+                handler9.postDelayed(this, 500);
+            }
+        };
+
+        runnable10 = new Runnable() {
+            @Override
+            public void run() {
+                //set progress on seekBar
+                seekBar10.setProgress(mediaPlayer10.getCurrentPosition());
+
+                // handler post delay for 0.5s
+                handler10.postDelayed(this, 500);
+            }
+        };*/
+
+
         try {
             if (Global.getStat(getActivity(), "favorite_state1").equals(null)) {
+
             }
         } catch (Exception e) {
             Global.saveState(getActivity(), "favorite_state1", "border");
@@ -202,7 +349,317 @@ public class HomeFragment extends Fragment implements ServiceConnection, ActionP
         }
 
 
-        //get duration of player
+       /* if (Global.getStat(getActivity(), "applicationMode").equals("light")){
+
+        }else if (Global.getStat(getActivity(), "applicationMode").equals("dark")){
+            RelativeLayout mainLayout = view.findViewById(R.id.mainLayout);
+            mainLayout.setBackgroundColor(getResources().getColor(R.color.mainDark));
+            RelativeLayout firstLayout = view.findViewById(R.id.first_relativeLayout);
+            firstLayout.setBackgroundResource(R.drawable.bg_dark);
+            seekBar1.setBackgroundColor(getResources().getColor(R.color.whit));
+        }*/
+
+/*
+
+        try {
+            MEDIA_PLAYER = savedInstanceState.getInt("media_player");
+            if (savedInstanceState == null) {
+
+            } else if (savedInstanceState.getString("saveString1").equals("playing")) {
+
+                switch (MEDIA_PLAYER) {
+                    case 1:
+                        mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref);
+                        mediaPlayer1.seekTo(savedInstanceState.getInt("saveInt1"));
+                        setRunnable();
+                        mediaPlayer1.start();
+                        playButton1.setVisibility(View.GONE);
+                        pauseButton1.setVisibility(View.VISIBLE);
+                        seekBar1.setMax(mediaPlayer1.getDuration());
+                        handler1.postDelayed(runnable1, 0);
+                        break;
+                    case 2:
+                        mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref_1);
+                        mediaPlayer1.seekTo(savedInstanceState.getInt("saveInt1"));
+                        setRunnable();
+                        mediaPlayer1.start();
+                        playButton2.setVisibility(View.GONE);
+                        pauseButton2.setVisibility(View.VISIBLE);
+                        seekBar2.setMax(mediaPlayer1.getDuration());
+                        handler2.postDelayed(runnable2, 0);
+                        break;
+                    case 3:
+                        mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref_2);
+                        mediaPlayer1.seekTo(savedInstanceState.getInt("saveInt1"));
+                        setRunnable();
+                        mediaPlayer1.start();
+                        playButton3.setVisibility(View.GONE);
+                        pauseButton3.setVisibility(View.VISIBLE);
+                        seekBar3.setMax(mediaPlayer1.getDuration());
+                        handler3.postDelayed(runnable3, 0);
+                        break;
+                    case 4:
+                        mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref_3);
+                        mediaPlayer1.seekTo(savedInstanceState.getInt("saveInt1"));
+                        setRunnable();
+                        mediaPlayer1.start();
+                        playButton4.setVisibility(View.GONE);
+                        pauseButton4.setVisibility(View.VISIBLE);
+                        seekBar4.setMax(mediaPlayer1.getDuration());
+                        handler4.postDelayed(runnable4, 0);
+                        break;
+                    case 5:
+                        mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref_4);
+                        mediaPlayer1.seekTo(savedInstanceState.getInt("saveInt1"));
+                        setRunnable();
+                        mediaPlayer1.start();
+                        playButton5.setVisibility(View.GONE);
+                        pauseButton5.setVisibility(View.VISIBLE);
+                        seekBar5.setMax(mediaPlayer1.getDuration());
+                        handler5.postDelayed(runnable5, 0);
+                        break;
+                    case 6:
+                        mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref_5);
+                        mediaPlayer1.seekTo(savedInstanceState.getInt("saveInt1"));
+                        setRunnable();
+                        mediaPlayer1.start();
+                        playButton6.setVisibility(View.GONE);
+                        pauseButton6.setVisibility(View.VISIBLE);
+                        seekBar6.setMax(mediaPlayer1.getDuration());
+                        handler6.postDelayed(runnable6, 0);
+                        break;
+                    case 7:
+                        mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref_6);
+                        mediaPlayer1.seekTo(savedInstanceState.getInt("saveInt1"));
+                        setRunnable();
+                        mediaPlayer1.start();
+                        playButton7.setVisibility(View.GONE);
+                        pauseButton7.setVisibility(View.VISIBLE);
+                        seekBar7.setMax(mediaPlayer1.getDuration());
+                        handler7.postDelayed(runnable7, 0);
+                        break;
+                    case 8:
+                        mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref_7);
+                        mediaPlayer1.seekTo(savedInstanceState.getInt("saveInt1"));
+                        setRunnable();
+                        mediaPlayer1.start();
+                        playButton8.setVisibility(View.GONE);
+                        pauseButton8.setVisibility(View.VISIBLE);
+                        seekBar8.setMax(mediaPlayer1.getDuration());
+                        handler8.postDelayed(runnable8, 0);
+                        break;
+                    case 9:
+                        mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref_8);
+                        mediaPlayer1.seekTo(savedInstanceState.getInt("saveInt1"));
+                        setRunnable();
+                        mediaPlayer1.start();
+                        playButton9.setVisibility(View.GONE);
+                        pauseButton9.setVisibility(View.VISIBLE);
+                        seekBar9.setMax(mediaPlayer1.getDuration());
+                        handler9.postDelayed(runnable9, 0);
+                        break;
+                    case 10:
+                        mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref_9);
+                        mediaPlayer1.seekTo(savedInstanceState.getInt("saveInt1"));
+                        setRunnable();
+                        mediaPlayer1.start();
+                        playButton10.setVisibility(View.GONE);
+                        pauseButton10.setVisibility(View.VISIBLE);
+                        seekBar10.setMax(mediaPlayer1.getDuration());
+                        handler10.postDelayed(runnable10, 0);
+                        break;
+                }
+
+
+
+
+                */
+/*
+                mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref);
+                mediaPlayer1.seekTo(savedInstanceState.getInt("saveInt1"));
+                setRunnable();
+                mediaPlayer1.start();
+                playButton1.setVisibility(View.GONE);
+                pauseButton1.setVisibility(View.VISIBLE);
+                seekBar1.setMax(mediaPlayer1.getDuration());
+                handler1.postDelayed(runnable1, 0);*//*
+
+            } else if (savedInstanceState.getString("saveString1").equals("notPlaying")) {
+                if (savedInstanceState.getInt("saveInt1") > 0) {
+
+                    switch (MEDIA_PLAYER) {
+                        case 1:
+                            mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref);
+                            mediaPlayer1.seekTo(savedInstanceState.getInt("saveInt1"));
+                            setRunnable();
+                            seekBar1.setMax(mediaPlayer1.getDuration());
+                            handler1.postDelayed(runnable1, 0);
+                            break;
+                        case 2:
+                            mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref_1);
+                            mediaPlayer1.seekTo(savedInstanceState.getInt("saveInt1"));
+                            setRunnable();
+                            seekBar2.setMax(mediaPlayer1.getDuration());
+                            handler2.postDelayed(runnable2, 0);
+                            break;
+                        case 3:
+                            mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref_2);
+                            mediaPlayer1.seekTo(savedInstanceState.getInt("saveInt1"));
+                            setRunnable();
+                            seekBar3.setMax(mediaPlayer1.getDuration());
+                            handler3.postDelayed(runnable3, 0);
+                            break;
+                        case 4:
+                            mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref_3);
+                            mediaPlayer1.seekTo(savedInstanceState.getInt("saveInt1"));
+                            setRunnable();
+                            seekBar4.setMax(mediaPlayer1.getDuration());
+                            handler4.postDelayed(runnable4, 0);
+                            break;
+                        case 5:
+                            mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref_4);
+                            mediaPlayer1.seekTo(savedInstanceState.getInt("saveInt1"));
+                            setRunnable();
+                            seekBar5.setMax(mediaPlayer1.getDuration());
+                            handler5.postDelayed(runnable5, 0);
+                            break;
+                        case 6:
+                            mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref_5);
+                            mediaPlayer1.seekTo(savedInstanceState.getInt("saveInt1"));
+                            setRunnable();
+                            seekBar6.setMax(mediaPlayer1.getDuration());
+                            handler6.postDelayed(runnable6, 0);
+                            break;
+                        case 7:
+                            mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref_6);
+                            mediaPlayer1.seekTo(savedInstanceState.getInt("saveInt1"));
+                            setRunnable();
+                            seekBar7.setMax(mediaPlayer1.getDuration());
+                            handler7.postDelayed(runnable7, 0);
+                            break;
+                        case 8:
+                            mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref_7);
+                            mediaPlayer1.seekTo(savedInstanceState.getInt("saveInt1"));
+                            setRunnable();
+                            seekBar8.setMax(mediaPlayer1.getDuration());
+                            handler8.postDelayed(runnable8, 0);
+                            break;
+                        case 9:
+                            mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref_8);
+                            mediaPlayer1.seekTo(savedInstanceState.getInt("saveInt1"));
+                            setRunnable();
+                            seekBar9.setMax(mediaPlayer1.getDuration());
+                            handler9.postDelayed(runnable9, 0);
+                            break;
+                        case 10:
+                            mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref_9);
+                            mediaPlayer1.seekTo(savedInstanceState.getInt("saveInt1"));
+                            setRunnable();
+                            seekBar10.setMax(mediaPlayer1.getDuration());
+                            handler10.postDelayed(runnable10, 0);
+                            break;
+                    }
+
+
+
+
+
+                    */
+/*mediaPlayer1 = MediaPlayer.create(getContext(), R.raw.aref);
+                    mediaPlayer1.seekTo(savedInstanceState.getInt("saveInt1"));
+                    setRunnable();
+                    mediaPlayer1.start();
+                    playButton1.setVisibility(View.GONE);
+                    pauseButton1.setVisibility(View.VISIBLE);
+                    seekBar1.setMax(mediaPlayer1.getDuration());
+                    handler1.postDelayed(runnable1, 0);*//*
+
+                }
+
+                */
+/*mediaPlayer1.seekTo(savedInstanceState.getInt("saveInt1"));
+                //seekBar1.setProgress(10000);
+                mediaPlayer1.start();
+                seekBar1.setMax(mediaPlayer1.getDuration());
+                handler1.postDelayed(runnable1, 0);*//*
+
+            }
+        } catch (Exception e) {
+
+        }
+*/
+
+
+
+
+
+
+        /*int duration1 = mediaPlayer1.getDuration();
+        String sDuration1 = convertFormat(duration1);
+        playerDuration1.setText(sDuration1);
+
+        int duration2 = mediaPlayer2.getDuration();
+        String sDuration2 = convertFormat(duration2);
+        playerDuration2.setText(sDuration2);
+
+        int duration3 = mediaPlayer3.getDuration();
+        String sDuration3 = convertFormat(duration3);
+        playerDuration3.setText(sDuration3);
+
+        int duration4 = mediaPlayer4.getDuration();
+        String sDuration4 = convertFormat(duration4);
+        playerDuration4.setText(sDuration4);
+
+        int duration5 = mediaPlayer5.getDuration();
+        String sDuration5 = convertFormat(duration5);
+        playerDuration5.setText(sDuration5);
+
+        int duration6 = mediaPlayer6.getDuration();
+        String sDuration6 = convertFormat(duration6);
+        playerDuration6.setText(sDuration6);
+
+        int duration7 = mediaPlayer7.getDuration();
+        String sDuration7 = convertFormat(duration7);
+        playerDuration7.setText(sDuration7);
+
+        int duration8 = mediaPlayer8.getDuration();
+        String sDuration8 = convertFormat(duration8);
+        playerDuration8.setText(sDuration8);
+
+        int duration9 = mediaPlayer9.getDuration();
+        String sDuration9 = convertFormat(duration9);
+        playerDuration9.setText(sDuration9);
+
+        int duration10 = mediaPlayer10.getDuration();
+        String sDuration10 = convertFormat(duration10);
+        playerDuration10.setText(sDuration10);*/
+
+
+
+
+
+
+
+
+
+
+
+        /*if (savedInstanceState != null){*//*
+            String bool = String.valueOf(mediaPlayer1.isPlaying());
+            int position = savedInstanceState.getInt("firstposition");
+            Toast.makeText(getContext(), bool, Toast.LENGTH_SHORT).show();
+            mediaPlayer1.seekTo(position);*//*
+            int position = savedInstanceState.getInt("firstposition");
+            playButton1.setVisibility(View.GONE);
+            pauseButton1.setVisibility(View.VISIBLE);
+            mediaPlayer1.seekTo(position);
+            mediaPlayer1.start();
+            seekBar1.setMax(mediaPlayer1.getDuration());
+            handler1.postDelayed(runnable1, 0);
+        }*/
+
+
+        //setting mediaPlayer duration
         setMediaPlayerDurations();
 
 
@@ -264,10 +721,10 @@ public class HomeFragment extends Fragment implements ServiceConnection, ActionP
             @Override
             public void onClick(View v) {
                 if (MEDIA_PLAYER != 5) {
-                    setMaxToZero();
-                    MEDIA_PLAYER = 5;
-                    audioService.createMediaPlayer(MEDIA_PLAYER);
-                }
+                setMaxToZero();
+                MEDIA_PLAYER = 5;
+                audioService.createMediaPlayer(MEDIA_PLAYER);
+            }
                 playAudio();
                 setSeekBar();
             }
@@ -316,10 +773,10 @@ public class HomeFragment extends Fragment implements ServiceConnection, ActionP
             @Override
             public void onClick(View v) {
                 if (MEDIA_PLAYER != 9) {
-                    setMaxToZero();
-                    MEDIA_PLAYER = 9;
-                    audioService.createMediaPlayer(MEDIA_PLAYER);
-                }
+                setMaxToZero();
+                MEDIA_PLAYER = 9;
+                audioService.createMediaPlayer(MEDIA_PLAYER);
+            }
                 playAudio();
                 setSeekBar();
             }
@@ -956,14 +1413,19 @@ public class HomeFragment extends Fragment implements ServiceConnection, ActionP
 
         }
 
-// this changes the seekbar while its playing
+
+
+// this changes the seekBar while its playing
         seekBar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (fromUser) {
-                    audioService.seekTo(progress);
+                if (MEDIA_PLAYER == 1) {
+                    if (fromUser) {
+                        audioService.seekTo(progress);
+                    }
+                    playerPosition1.setText(convertFormat(audioService.getCurrentPosition()));
                 }
-                playerPosition1.setText(convertFormat(audioService.getCurrentPosition()));
+
             }
 
             @Override
@@ -979,29 +1441,30 @@ public class HomeFragment extends Fragment implements ServiceConnection, ActionP
         seekBar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (fromUser) {
-                    audioService.seekTo(progress);
+                if (MEDIA_PLAYER == 2) {
+                    if (fromUser) {
+                        audioService.seekTo(progress);
+                    }
+                    playerPosition2.setText(convertFormat(audioService.getCurrentPosition()));
                 }
-                playerPosition2.setText(convertFormat(audioService.getCurrentPosition()));
             }
-
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
             }
         });
         seekBar3.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (fromUser) {
-                    audioService.seekTo(progress);
+                if (MEDIA_PLAYER == 3) {
+                    if (fromUser) {
+                        audioService.seekTo(progress);
+                    }
+                    playerPosition3.setText(convertFormat(audioService.getCurrentPosition()));
                 }
-                playerPosition3.setText(convertFormat(audioService.getCurrentPosition()));
             }
 
             @Override
@@ -1017,10 +1480,12 @@ public class HomeFragment extends Fragment implements ServiceConnection, ActionP
         seekBar4.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (fromUser) {
-                    audioService.seekTo(progress);
+                if (MEDIA_PLAYER == 4) {
+                    if (fromUser) {
+                        audioService.seekTo(progress);
+                    }
+                    playerPosition4.setText(convertFormat(audioService.getCurrentPosition()));
                 }
-                playerPosition4.setText(convertFormat(audioService.getCurrentPosition()));
             }
 
             @Override
@@ -1036,10 +1501,12 @@ public class HomeFragment extends Fragment implements ServiceConnection, ActionP
         seekBar5.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (fromUser) {
-                    audioService.seekTo(progress);
+                if (MEDIA_PLAYER == 5) {
+                    if (fromUser) {
+                        audioService.seekTo(progress);
+                    }
+                    playerPosition5.setText(convertFormat(audioService.getCurrentPosition()));
                 }
-                playerPosition5.setText(convertFormat(audioService.getCurrentPosition()));
             }
 
             @Override
@@ -1055,10 +1522,12 @@ public class HomeFragment extends Fragment implements ServiceConnection, ActionP
         seekBar6.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (fromUser) {
-                    audioService.seekTo(progress);
+                if (MEDIA_PLAYER == 6) {
+                    if (fromUser) {
+                        audioService.seekTo(progress);
+                    }
+                    playerPosition6.setText(convertFormat(audioService.getCurrentPosition()));
                 }
-                playerPosition6.setText(convertFormat(audioService.getCurrentPosition()));
             }
 
             @Override
@@ -1074,10 +1543,12 @@ public class HomeFragment extends Fragment implements ServiceConnection, ActionP
         seekBar7.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (fromUser) {
-                    audioService.seekTo(progress);
+                if (MEDIA_PLAYER == 7) {
+                    if (fromUser) {
+                        audioService.seekTo(progress);
+                    }
+                    playerPosition7.setText(convertFormat(audioService.getCurrentPosition()));
                 }
-                playerPosition7.setText(convertFormat(audioService.getCurrentPosition()));
             }
 
             @Override
@@ -1093,10 +1564,12 @@ public class HomeFragment extends Fragment implements ServiceConnection, ActionP
         seekBar8.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (fromUser) {
-                    audioService.seekTo(progress);
+                if (MEDIA_PLAYER == 8) {
+                    if (fromUser) {
+                        audioService.seekTo(progress);
+                    }
+                    playerPosition8.setText(convertFormat(audioService.getCurrentPosition()));
                 }
-                playerPosition8.setText(convertFormat(audioService.getCurrentPosition()));
             }
 
             @Override
@@ -1112,10 +1585,12 @@ public class HomeFragment extends Fragment implements ServiceConnection, ActionP
         seekBar9.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (fromUser) {
-                    audioService.seekTo(progress);
+                if (MEDIA_PLAYER == 9) {
+                    if (fromUser) {
+                        audioService.seekTo(progress);
+                    }
+                    playerPosition9.setText(convertFormat(audioService.getCurrentPosition()));
                 }
-                playerPosition9.setText(convertFormat(audioService.getCurrentPosition()));
             }
 
             @Override
@@ -1131,10 +1606,12 @@ public class HomeFragment extends Fragment implements ServiceConnection, ActionP
         seekBar10.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if (fromUser) {
-                    audioService.seekTo(progress);
+                if (MEDIA_PLAYER == 10) {
+                    if (fromUser) {
+                        audioService.seekTo(progress);
+                    }
+                    playerPosition10.setText(convertFormat(audioService.getCurrentPosition()));
                 }
-                playerPosition10.setText(convertFormat(audioService.getCurrentPosition()));
             }
 
             @Override
@@ -1149,6 +1626,100 @@ public class HomeFragment extends Fragment implements ServiceConnection, ActionP
         });
 
 
+
+
+       /* mediaPlayer1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                Toast.makeText(getContext(), "comp", Toast.LENGTH_SHORT).show();
+            }
+        });*/
+
+        /*mediaPlayer1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {*//*
+                pauseButton1.setVisibility(View.GONE);
+                playButton1.setVisibility(View.VISIBLE);
+                mediaPlayer1.seekTo(0);*//*
+                Toast.makeText(getContext(), "finished", Toast.LENGTH_SHORT).show();
+                ifAudioIsPlaying();
+                setMax();
+            }
+        });*/
+        /*mediaPlayer2.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                pauseButton2.setVisibility(View.GONE);
+                playButton2.setVisibility(View.VISIBLE);
+                mediaPlayer2.seekTo(0);
+            }
+        });
+        mediaPlayer3.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                pauseButton3.setVisibility(View.GONE);
+                playButton3.setVisibility(View.VISIBLE);
+                mediaPlayer3.seekTo(0);
+            }
+        });
+        mediaPlayer4.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                pauseButton4.setVisibility(View.GONE);
+                playButton4.setVisibility(View.VISIBLE);
+                mediaPlayer4.seekTo(0);
+            }
+        });
+        mediaPlayer5.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                pauseButton5.setVisibility(View.GONE);
+                playButton5.setVisibility(View.VISIBLE);
+                mediaPlayer5.seekTo(0);
+            }
+        });
+        mediaPlayer6.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                pauseButton6.setVisibility(View.GONE);
+                playButton6.setVisibility(View.VISIBLE);
+                mediaPlayer6.seekTo(0);
+            }
+        });
+        mediaPlayer7.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                pauseButton7.setVisibility(View.GONE);
+                playButton7.setVisibility(View.VISIBLE);
+                mediaPlayer7.seekTo(0);
+            }
+        });
+        mediaPlayer8.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                pauseButton8.setVisibility(View.GONE);
+                playButton8.setVisibility(View.VISIBLE);
+                mediaPlayer8.seekTo(0);
+            }
+        });
+        mediaPlayer9.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                pauseButton9.setVisibility(View.GONE);
+                playButton9.setVisibility(View.VISIBLE);
+                mediaPlayer9.seekTo(0);
+            }
+        });
+        mediaPlayer10.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                pauseButton10.setVisibility(View.GONE);
+                playButton10.setVisibility(View.VISIBLE);
+                mediaPlayer10.seekTo(0);
+            }
+        });*/
+
+
     }
 
 
@@ -1159,6 +1730,7 @@ public class HomeFragment extends Fragment implements ServiceConnection, ActionP
                 TimeUnit.MILLISECONDS.toSeconds(duration) -
                         TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(duration)));
     }
+
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
@@ -1609,7 +2181,6 @@ public class HomeFragment extends Fragment implements ServiceConnection, ActionP
         getActivity().unbindService(this);
     }
 
-
     void setMediaPlayerDurations() {
         //get duration of player
         playerDuration1.setText("18:37");
@@ -1713,8 +2284,9 @@ public class HomeFragment extends Fragment implements ServiceConnection, ActionP
     }
 
 
-    private void setPauseButtonVisible() {
-        switch (MEDIA_PLAYER) {
+
+    private void setPauseButtonVisible(){
+        switch (MEDIA_PLAYER){
             case 1:
                 pauseButton1.setVisibility(View.VISIBLE);
                 playButton1.setVisibility(View.GONE);
@@ -1759,8 +2331,10 @@ public class HomeFragment extends Fragment implements ServiceConnection, ActionP
     }
 
 
-    private void setPlayButtonVisible() {
-        switch (MEDIA_PLAYER) {
+
+
+    private void setPlayButtonVisible(){
+        switch (MEDIA_PLAYER){
             case 1:
                 pauseButton1.setVisibility(View.GONE);
                 playButton1.setVisibility(View.VISIBLE);
@@ -1807,21 +2381,21 @@ public class HomeFragment extends Fragment implements ServiceConnection, ActionP
 
     @Override
     public void btn_playPauseClicked() {
-        if (audioService.isPlaying()) {
+        if (audioService.isPlaying()){
             audioService.showNotification(R.drawable.play_arrow_24, true);
             audioService.pause();
             setPlayButtonVisible();
             handler1.removeCallbacks(runnable1);
             handler2.removeCallbacks(runnable2);
             handler3.removeCallbacks(runnable3);
-        } else {
+        }else {
             playAudio();
         }
     }
 
     @Override
     public void btn_prevClicked() {
-        if (MEDIA_PLAYER > 1) {
+        if (MEDIA_PLAYER > 1){
             setMaxToZero();
             MEDIA_PLAYER -= 1;
             audioService.createMediaPlayer(MEDIA_PLAYER);
@@ -1832,7 +2406,7 @@ public class HomeFragment extends Fragment implements ServiceConnection, ActionP
 
     @Override
     public void btn_clearClicked() {
-        if (audioService.isPlaying()) {
+        if (audioService.isPlaying()){
             audioService.pause();
             setPlayButtonVisible();
         }
@@ -1842,7 +2416,7 @@ public class HomeFragment extends Fragment implements ServiceConnection, ActionP
 
     @Override
     public void btn_nextClicked() {
-        if (MEDIA_PLAYER < 10) {
+        if (MEDIA_PLAYER < 10){
             setMaxToZero();
             MEDIA_PLAYER += 1;
             audioService.createMediaPlayer(MEDIA_PLAYER);
@@ -1852,8 +2426,9 @@ public class HomeFragment extends Fragment implements ServiceConnection, ActionP
     }
 
 
-    void setSeekBar() {
-        switch (MEDIA_PLAYER) {
+
+    void setSeekBar(){
+        switch (MEDIA_PLAYER){
             case 1:
                 seekBar1.setMax(audioService.getDuration());
                 handler1.postDelayed(runnable1, 0);
@@ -1887,7 +2462,7 @@ public class HomeFragment extends Fragment implements ServiceConnection, ActionP
         }
     }
 
-    void playAudio() {
+    void playAudio(){
         audioService.showNotification(R.drawable.pause_24, true);
         setRunnable();
         setPauseButtonVisible();
@@ -1897,11 +2472,10 @@ public class HomeFragment extends Fragment implements ServiceConnection, ActionP
 
 
     public void removeNotification() {
-        if (audioService.isPlaying()) {
+        if (audioService.isPlaying()){
             setPlayButtonVisible();
             audioService.stop();
         }
         getActivity().stopService(new Intent(getContext(), AudioService.class));
     }
-
 }
