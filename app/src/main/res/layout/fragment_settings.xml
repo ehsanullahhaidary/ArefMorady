@@ -7,7 +7,6 @@
     android:padding="15dp"
     tools:context=".SettingsFragment">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -35,7 +34,6 @@
                         android:layout_alignParentTop="true"
                         android:layout_margin="20dp"
                         />
-
 
                     <TextView
                         android:layout_below="@+id/molana"
@@ -77,98 +75,7 @@
 محترم صاحب خان ( صدیقی غوریانی ) گردآورنده و ترتیب و تنظیم کننده فتاوا.\n
 تقدیر و تشکر نموده و صحتمندی و عافیت از بلیات و آفت های زمینی و آسمانی و موفقیت و سرفرازی از آزمون های دنیوی و اخری را برای شان از بارگاه خالق منان مسئلت می نماید.\n
 "
-                        android:textSize="20sp" />
-
-
-                    <!--<RelativeLayout
-                        android:id="@+id/firstLink"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/firstTextView">
-
-                        <TextView
-                            android:layout_margin="10dp"
-                            android:layout_alignParentRight="true"
-                            android:id="@+id/secondTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="ارتباط با دارالعلوم عالی هرات:"
-                            android:textColor="#3C98DD"
-                            android:textSize="20sp"/>
-
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:layout_below="@id/secondTextView">
-
-                            <ImageView
-                                android:layout_centerVertical="true"
-                                android:layout_margin="20dp"
-                                android:id="@+id/telegram"
-                                android:src="@drawable/telegram"
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"/>
-                            <ImageView
-                                android:layout_centerVertical="true"
-                                android:layout_margin="20dp"
-                                android:layout_toRightOf="@id/telegram"
-                                android:id="@+id/facebook"
-                                android:src="@drawable/faecbook"
-                                android:layout_width="35dp"
-                                android:layout_height="35dp"/>
-
-                        </RelativeLayout>
-
-
-
-                    </RelativeLayout>
-
-
-                    <RelativeLayout
-                        android:id="@+id/secondLink"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/firstLink">
-
-                        <TextView
-                            android:layout_margin="10dp"
-                            android:layout_alignParentRight="true"
-                            android:id="@+id/thirdTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="ارتباط با سازنده های برنامه:"
-                            android:textColor="#3C98DD"
-                            android:textSize="20sp"/>
-
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:layout_below="@id/thirdTextView">
-
-                            <ImageView
-                                android:layout_centerVertical="true"
-                                android:layout_margin="20dp"
-                                android:id="@+id/adminTelegram"
-                                android:src="@drawable/telegram"
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"/>
-                            <ImageView
-                                android:layout_centerVertical="true"
-                                android:layout_margin="20dp"
-                                android:layout_toRightOf="@id/adminTelegram"
-                                android:id="@+id/adminGmail"
-                                android:src="@drawable/gmail"
-                                android:layout_width="35dp"
-                                android:layout_height="35dp"/>
-
-                        </RelativeLayout>
-
-
-
-                    </RelativeLayout>-->
-
+                        android:textSize="16sp" />
 
                     <TextView
                         android:layout_margin="20dp"
@@ -184,10 +91,10 @@
                     <RelativeLayout
                         android:layout_centerHorizontal="true"
                         android:id="@+id/links"
-                        android:layout_width="250dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginHorizontal="20dp"
                         android:layout_height="80dp"
                         android:layout_below="@+id/secondTextView">
-
 
                         <TextView
                             android:layout_alignParentLeft="true"
@@ -197,7 +104,7 @@
                             android:text="دارالعلوم عالی هرات:"
                             android:textColor="#3C98DD"
                             android:paddingBottom="10dp"
-                            android:textSize="20sp"/>
+                            android:textSize="14sp"/>
 
                         <TextView
                             android:id="@+id/adminTextView"
@@ -208,8 +115,7 @@
                             android:text="سازنده های برنامه:"
                             android:textColor="#3C98DD"
                             android:paddingBottom="10dp"
-                            android:textSize="20sp"/>
-
+                            android:textSize="14sp"/>
 
                         <RelativeLayout
                             android:layout_marginRight="30sp"
@@ -218,8 +124,6 @@
                             android:layout_height="60dp"
                             android:layout_alignParentLeft="true"
                             android:layout_below="@+id/daruloloomTextView">
-
-
 
                             <ImageView
                                 android:layout_alignParentLeft="true"
@@ -249,8 +153,6 @@
                             android:layout_height="60dp"
                            >
 
-
-
                             <ImageView
                                 android:layout_alignParentLeft="true"
                                 android:layout_centerVertical="true"
@@ -269,71 +171,7 @@
                                 android:layout_height="30dp"/>
 
                         </RelativeLayout>
-
-
-                        <!--<RelativeLayout
-                            android:layout_marginRight="30sp"
-                            android:id="@+id/firstLink"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentLeft="true">
-
-
-
-                            <ImageView
-                                android:layout_below="@id/adminTextView"
-                                android:layout_centerVertical="true"
-                                android:layout_margin="10dp"
-                                android:id="@+id/telegram"
-                                android:src="@drawable/telegram"
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"/>
-                            <ImageView
-                                android:layout_centerVertical="true"
-                                android:layout_margin="10dp"
-                                android:layout_toRightOf="@id/telegram"
-                                android:id="@+id/facebook"
-                                android:src="@drawable/faecbook"
-                                android:layout_width="35dp"
-                                android:layout_height="35dp"/>
-
-                        </RelativeLayout>
-                        <RelativeLayout
-                            android:id="@+id/secondLink"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_toRightOf="@+id/firstLink">
-
-                            <TextView
-                                android:id="@+id/daruloloomTextView"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="سازنده های برنامه:"
-                                android:textColor="#3C98DD"
-                                android:paddingBottom="20dp"
-                                android:textSize="20sp"/>
-
-                            <ImageView
-                                android:layout_below="@id/daruloloomTextView"
-                                android:layout_centerVertical="true"
-                                android:layout_margin="10dp"
-                                android:id="@+id/adminTelegram"
-                                android:src="@drawable/telegram"
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"/>
-                            <ImageView
-                                android:layout_centerVertical="true"
-                                android:layout_margin="10dp"
-                                android:layout_toRightOf="@id/adminTelegram"
-                                android:id="@+id/adminGmail"
-                                android:src="@drawable/gmail"
-                                android:layout_width="35dp"
-                                android:layout_height="35dp"/>
-
-                        </RelativeLayout>-->
-
                     </RelativeLayout>
-
 
 
                     <TextView
@@ -342,15 +180,12 @@
                         android:layout_height="wrap_content"
                         android:text="\n\n\n\n\n"/>
 
-
                 </RelativeLayout>
 
             </ScrollView>
 
         </LinearLayout>
 
-
     </LinearLayout>
-
 
 </LinearLayout>
