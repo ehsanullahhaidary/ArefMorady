@@ -23,8 +23,7 @@
         android:layout_centerInParent="true"
         android:layout_marginBottom="-86dp"
         android:fontFamily="cursive"
-        android:text="دارالعلوم عالی هرات
-\nنسخه امتحانی"
+        android:text="دارالعلوم عالی هرات"
         android:textSize="40sp" />
 
 </RelativeLayout>
